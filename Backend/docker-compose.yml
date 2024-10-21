@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  gaep-backend:
+    build: .
+    container_name: gaep-backend
+    image: gaep-python-backend
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"  # Falls die App auf einem Port läuft (z.B. Flask)
+    environment:
+      - PYTHONUNBUFFERED=1  # Optional, um das Buffering zu deaktivieren
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash

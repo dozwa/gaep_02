@@ -1,0 +1,36 @@
+# Node.js: Die in Angular-Projekten verwendeten node_modules enthalten alle benötigten Abhängigkeiten und sollten nicht versioniert werden.
+node_modules/
+
+# Temporäre Debugging-Protokolle für npm und yarn sollten nicht in die Versionskontrolle aufgenommen werden.
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular-Erstellungsartefakte. Das Verzeichnis dist/ wird erstellt, wenn das Projekt gebaut wird.
+dist/
+build/
+
+# Visual Studio Code: Die folgenden Verzeichnisse enthalten benutzerspezifische Editor-Einstellungen, die nicht in die Versionskontrolle aufgenommen werden sollten.
+.vscode/
+
+# Operating System Files: Diese Dateien werden von Betriebssystemen generiert und sind für die Entwicklung irrelevant.
+# macOS: Finder-Dateien, die von macOS erzeugt werden.
+.DS_Store
+
+# Windows Thumbnails und Systemdateien
+Thumbs.db
+
+# Draw.io: Bufferdateien oder Backups von Diagrammen mit bestimmten Endungen werden ignoriert.
+*.$*.drawio.bkp
+
+# JetBrains IDEs/IntelliJ: Projektdateien sollten nicht in ein gemeinsames Repository eingecheckt werden.
+.idea/
+
+# Weitere temporäre und Backup-Dateien
+*.bak
+*.tmp
+*.swp # Swap-Dateien von Texteditoren
+
+# weitere log Dateien vom gaep python server
+json_logs/
+*.log

@@ -1,0 +1,29 @@
+# Basis-Image für Node.js (Angular wird darüber installiert)
+FROM node:14
+
+# Arbeitsverzeichnis setzen
+WORKDIR /app
+
+# Kopiere package.json und package-lock.json (falls vorhanden)
+COPY package*.json ./
+
+# Installiere Angular und andere Abhängigkeiten
+RUN npm install -g @angular/cli && npm install
+
+# Kopiere den Rest der Anwendung
+COPY . .
+
+# Baue das Angular-Projekt für die Produktion
+RUN ng build --prod
+
+# Verwende ein einfaches Web-Server-Image, um die Angular-App zu hosten
+FROM nginx:alpine
+
+# Kopiere die Build-Ausgabe ins Nginx-Verzeichnis
+COPY --from=0 /app/dist /usr/share/nginx/html
+
+# Exponiere den Port 80 für den Webserver
+EXPOSE 80
+
+# Start Nginx als Standardbefehl
+CMD ["nginx", "-g", "daemon off;"]
