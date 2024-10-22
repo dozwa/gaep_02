@@ -1,0 +1,8 @@
+{
+  "frage": "Nutzerfrage",
+  "ll": "Leitlinie",
+  "a-laenge": 1,
+  "n-empfehlung": 4,
+  "relevanz": 2,
+  "detail": false
+}
