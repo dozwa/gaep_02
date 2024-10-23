@@ -1,0 +1,31 @@
+# Basis-Image für Node.js (Angular wird darüber installiert)
+FROM node:18
+
+# Arbeitsverzeichnis setzen
+WORKDIR /app
+
+# Kopiere package.json und package-lock.json (falls vorhanden)
+COPY ./app/GAEP/package*.json ./
+
+# Installiere Angular und andere Abhängigkeiten
+RUN npm install -g @angular/cli@18 && npm install
+RUN rm package*.json
+
+# Kopiere den Rest der Anwendung
+COPY ./app .
+WORKDIR /app/GAEP
+
+# Baue das Angular-Projekt für die Produktion
+RUN ng build --configuration "production"
+
+# Verwende ein einfaches Web-Server-Image, um die Angular-App zu hosten
+FROM nginx:alpine
+
+# Kopiere die Build-Ausgabe ins Nginx-Verzeichnis
+COPY --from=0 /app/GAEP/dist /usr/share/nginx/html
+
+# Exponiere den Port 80 für den Webserver
+EXPOSE 80
+
+# Start Nginx als Standardbefehl
+CMD ["nginx", "-g", "daemon off;"]

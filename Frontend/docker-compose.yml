@@ -1,13 +1,26 @@
 version: '3.8'
 
 services:
-  gaep-frontend:
+  gaep-frontend: # Development
     build: .
     container_name: gaep-frontend
     image: gaep-angular-frontend
     ports:
-      - "80:80"  # Port-Freigabe für das Webhosting
+      - "4200:4200"  # Exponiere den Entwicklungsport (Angular Live Dev Server)
     volumes:
-      - .:/app
+      - ./app:/app
     environment:
-      - NODE_ENV=production  # Optional, falls du Umgebungsvariablen brauchst
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    command: ng serve --host 0.0.0.0 --poll 2000  # Live Reload mit Polling (gut für Docker)
+    
+  gaep-frontend-prod: # Deployment
+    build: 
+      dockerfile: ./dockerfile_prod
+    container_name: gaep-frontend-production
+    image: gaep-angular-frontend-production
+    ports:
+      - "80:80"  # Exponiere den Port für den Nginx-Server im Produktionsmodus
+    environment:
+      - NODE_ENV=production  # Setze die Umgebung auf Production
