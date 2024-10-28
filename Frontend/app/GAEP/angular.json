@@ -33,7 +33,9 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/gaep-theme.scss",
+              "src/custom-styling.scss"
             ],
             "scripts": []
           },
@@ -93,7 +95,9 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/gaep-theme.scss",
+              "src/custom-styling.scss"
             ],
             "scripts": []
           }

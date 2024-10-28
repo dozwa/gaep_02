@@ -43,3 +43,43 @@
   bottom: 0;
   background-color: blueviolet;
 }
+/*
+.mat-toolbar {
+  background-color: $brand-primary !important;
+}
+.mat-button {
+  color: white;
+}*/
+
+@media (max-width: 600px) {
+  .example-spacer {
+    flex: none;
+  }
+
+  .mat-toolbar {
+    flex-direction: column; /* Die Toolbar-Elemente werden übereinander gelegt */
+  }
+
+  .icon-text {
+    display: none; /* Text ausblenden um Platz auf kleineren Bildschirmen zu sparen */
+  }
+}
+
+@media (min-width: 601px) {
+  .mat-toolbar {
+    flex-direction: row; /* Die Toolbar-Elemente in einer Zeile anordnen */
+  }
+
+  .icon-text {
+    display: inline; /* Den Text sichtbar lassen */
+  }
+}
+
+
+.mat-toolbar {
+  flex-direction: column; /* Die Toolbar-Elemente in einer Zeile anordnen */
+}
+
+.icon-text {
+  display: inline; /* Den Text sichtbar lassen */
+}
