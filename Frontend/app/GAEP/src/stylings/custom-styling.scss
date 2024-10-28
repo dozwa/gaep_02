@@ -2,34 +2,44 @@
 
 /* In deiner .css Datei */
 .region-topbar {
-    background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
-    overflow: hidden; /* Wird verwendet, um überfließende Inhalt zu verbergen */
-    position:relative; /* Fixiert das Menü oben auf der Seite */
-    top: 0; /* Positioniert das Menü am oberen Rand */
-    left: 0;
-    width: 100%; /* Lässt das Menü die ganze Breite einnehmen */
-    z-index: 1000; /* Stellt sicher, dass das Menü über anderen Inhalten liegt */
-  }
-  
-  .region-topbar ul {
-    margin: 0; /* Entfernt Standardmargen */
-    padding: 0; /* Entfernt Standardabstände */
-    list-style-type: none; /* Entfernt Aufzählungszeichen */
-  }
-  
-  .region-topbar li {
-    display: inline; /* Li-Elemente in einer Linie darstellen */
-  }
-  
-  .region-topbar li a {
-    display: inline-block; /* Ermöglicht das Anwenden von Rändern und Padding */
-    color: white; /* Textfarbe */
-    text-align: center; /* Zentriert den Text */
-    padding: 14px 16px; /* Innerer Abstand zu den Rändern des Links */
-    text-decoration: none; /* Entfernt die Unterstreichung 
+  background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
+  overflow: hidden; /* Wird verwendet, um überfließende Inhalt zu verbergen */
+  position: fixed; /* Fixiert das Menü oben auf der Seite */
+  top: 0; /* Positioniert das Menü am oberen Rand */
+  left: 0;
+  width: 100%; /* Lässt das Menü die ganze Breite einnehmen */
+  z-index: 999; /* Stellt sicher, dass das Menü über anderen Inhalten liegt */
+}
+
+.region-topbar ul {
+  margin: 0; /* Entfernt Standardmargen */
+  padding: 0; /* Entfernt Standardabstände */
+  list-style-type: none; /* Entfernt Aufzählungszeichen */
+}
+
+.region-topbar li {
+  display: inline; /* Li-Elemente in einer Linie darstellen */
+}
+
+.region-topbar li a {
+  display: inline-block; /* Ermöglicht das Anwenden von Rändern und Padding */
+  color: white; /* Textfarbe */
+  text-align: center; /* Zentriert den Text */
+  padding: 14px 16px; /* Innerer Abstand zu den Rändern des Links */
+  text-decoration: none; /* Entfernt die Unterstreichung 
                              des Links */
-  }
-  
-  .region-topbar li a:hover {
-    background-color: $navtopbar-bg-hover; /* Hintergrundfarbe beim Hoover-Effekt */
-  }
+}
+
+.region-topbar li a:hover {
+  background-color: $navtopbar-bg-hover; /* Hintergrundfarbe beim Hoover-Effekt */
+}
+
+.disclaimer {
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: blueviolet;
+}
