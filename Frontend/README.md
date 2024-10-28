@@ -29,3 +29,4 @@ verwendete Frameworks:
 
 verwendete UI Bibliothek:
 * Angular Material
+'https://material.angular.io/components/categories'
