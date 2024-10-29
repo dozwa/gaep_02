@@ -9,6 +9,7 @@
   left: 0;
   width: 100%; /* Lässt das Menü die ganze Breite einnehmen */
   z-index: 999; /* Stellt sicher, dass das Menü über anderen Inhalten liegt */
+  min-height: $topbar-minimalheight;
 }
 
 .region-topbar ul {
@@ -34,15 +35,6 @@
   background-color: $navtopbar-bg-hover; /* Hintergrundfarbe beim Hoover-Effekt */
 }
 
-.disclaimer {
-  z-index: 1000;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: blueviolet;
-}
 /*
 .mat-toolbar {
   background-color: $brand-primary !important;
@@ -82,4 +74,72 @@
 
 .icon-text {
   display: inline; /* Den Text sichtbar lassen */
+}
+.row {
+  display: flex;
+  flex-wrap: wrap; // Ermöglicht Umbrüche bei Spalten, die die gesamte Breite überschreiten.
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.column {
+  flex: 1; // Macht die Spalten flexibel.
+  padding-right: 15px;
+  padding-left: 15px;
+  
+  // Stellt sicher, dass der Inhalt untereinander auf kleineren Bildschirmen angezeigt wird.
+  @media (max-width: 768px) {
+    flex-basis: 100%; // Spalte nimmt volle Breite ein (Stacked).
+    max-width: 100%;
+  }
+}
+
+
+// Zusätzliche Spaltengrößen von xs bis xl
+// Optional: Definieren von spezifischen Spaltenverteilungen ähnlich wie Bootstrap.
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / 12); // Festlegen der Basisgröße.
+    max-width: percentage($i / 12);
+  }
+}
+
+// Responsive Anpassung für Screens jenseits der "small"-Schwelle.
+@media (min-width: 768px) {
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .col {
+    flex: 1;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      flex: 0 0 percentage($i / 12);
+      max-width: percentage($i / 12);
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      flex: 0 0 percentage($i / 12);
+      max-width: percentage($i / 12);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  @for $i from 1 through 12 {
+    .col-xl-#{$i} {
+      flex: 0 0 percentage($i / 12);
+      max-width: percentage($i / 12);
+    }
+  }
 }

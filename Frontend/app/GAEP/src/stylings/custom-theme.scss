@@ -1,0 +1,155 @@
+@use "@angular/material" as mat;
+@import "custom-variables.scss";
+
+@include mat.core();
+
+// output from @debug matx.$m3-azure-palette
+$my-m3-colours: (
+    0: #000000,
+    10: mix($brand-primary, #ffffff, 90%),
+    // Erstelle hellere Varianten
+    20: mix($brand-primary, #ffffff, 80%),
+    25: mix($brand-primary, #ffffff, 75%),
+    30: mix($brand-primary, #ffffff, 70%),
+    35: mix($brand-primary, #ffffff, 65%),
+    40: $brand-primary, //Toolbar
+    50: mix($brand-primary, #ffffff, 50%),
+    60: mix($brand-primary, #ffffff, 40%),
+    70: mix($brand-primary, #ffffff, 30%),
+    80: mix($brand-primary, #ffffff, 20%),
+    90: mix($brand-primary, #ffffff, 10%),
+    95: mix($brand-primary, #ffffff, 5%),
+    98: #f9f9ff,
+    99: #fdfbff,
+    100: #ffffff,
+  secondary: (
+    0: #000000,
+    10: mix(#bdcdff00, #ffffff, 90%),
+    // Erstelle dunklere Varianten
+    20: mix(#bdcdff00, #ffffff, 80%),
+    25: mix(#bdcdff00, #ffffff, 75%),
+    30: mix(#bdcdff00, #ffffff, 70%),
+    35: mix(#bdcdff00, #ffffff, 65%),
+    40: mix(#bdcdff00, #ffffff, 60%),
+    50: mix(#bdcdff00, #ffffff, 50%),
+    60: mix(#bdcdff00, #ffffff, 40%),
+    70: mix(#bdcdff00, #ffffff, 30%),
+    80: mix(#bdcdff00, #ffffff, 20%),
+    90: mix(#bdcdff00, #ffffff, 10%),
+    95: mix(#bdcdff00, #ffffff, 5%),
+    98: #f9f9ff,
+    99: #fdfbff,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #1a1b1f,
+    20: #2f3033,
+    25: #3b3b3f,
+    30: #46464a,
+    35: #525256,
+    40: #5e5e62,
+    50: #77777a,
+    60: #919094,
+    70: #ababaf,
+    80: #c7c6ca,
+    90: #e3e2e6,
+    95: #f2f0f4,
+    98: #faf9fd, //#faf9fd
+    99: #fdfbff,
+    100: #ffffff,
+    4: #0a0b0c,
+    6: #101013,
+    12: #1e1f23,
+    17: #292a2d,
+    22: #343438,
+    24: #39393d,
+    87: #dbdade,
+    92: #e9e8ec,
+    94: #efedf1,
+    96: #f5f3f7,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #181c22,
+    20: #2d3038,
+    25: #383b43,
+    30: #44474e,
+    35: #4f525a,
+    40: #5b5e66,
+    50: #74777f,
+    60: #8e9099,
+    70: #a9abb4,
+    80: #c4c6d0,
+    90: #e0e2ec,
+    95: #eff0fa,
+    98: #f9f9ff,
+    99: #fdfbff,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+);
+
+$theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $my-m3-colours,
+    ),
+    typography: (
+      brand-family: "comic sans",
+      bold-weight: 900,
+    ),
+    density: (
+      scale: -1,
+    ),
+  )
+);
+
+html {
+  // Lade alle Material-Komponenten mit dem definierten Theme
+  @include mat.all-component-themes($theme);
+}
+:root {
+  mat-toolbar {
+    --mat-toolbar-container-background-color: #{mat.get-theme-color($theme, primary, 40)};
+  }
+  // Lade alle Material-Komponenten mit dem definierten Theme
+  @include mat.all-component-themes($theme);
+  
+}
+
+
+.mat-toolbar {
+  background-color: white;
+}
+
+.disclaimer {
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 30vh 20vw;
+  text-align: center;
+  color: black !important;
+}

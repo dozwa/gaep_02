@@ -1,4 +1,12 @@
-<div class="disclaimer">
-    <p>disclaimer works!</p>
-    <button (click)="onDisclaimerSend()">Bestätigen</button>
+<div class="disclaimer" color="primary">
+    <h1>Disclaimer</h1>
+    <p>Bei dieser Anwendung handelt es sich um einen Prototypen.</p>
+    <p>Das In-EbP Team übernimmt zum aktuellen Zeitpunkt keine Haftung für angezeigte Inhalte.</p>
+    <div style="text-align: left;">
+        <mat-slide-toggle [(ngModel)]="this.acceptedCookies" color="primary">Ich bin mit der Nutzung technisch notwendiger Cookies einverstanden.</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="this.acceptedInformation" color="primary">Ich bin mir bewusst, dass die Informationen der Anwendung keine medizinische Beratung darstellen und ich willige ein, keine vertraulichen Patientendaten in die Anwendung einzutragen. (<a>Projektinformationen & Einwilligung</a>)</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="this.acceptedUsage" color="primary">Ich habe die Projektinformationen gelesen und erkläre hiermit meine Einwilligung zur Teilnahme und zur Nutzung meiner Daten im erläuterten Rahmen.</mat-slide-toggle>
+    </div>
+    <br>
+    <button color="primary" mat-flat-button (click)="onDisclaimerSend()"  [disabled]="!(this.acceptedCookies && this.acceptedInformation && this.acceptedUsage)">Ich bin mir der aktuellen Einschränkungen bewusst und nutze die Anwendung auf eigene Verantwortung.</button>
 </div>
