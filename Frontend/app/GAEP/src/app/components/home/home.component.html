@@ -1,1 +1,116 @@
-<p>home works!</p>
+<div class="row">
+  <div class="col-lg-2 col-xl-3"></div>
+  <div class="col-sx-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
+    <div class="column-center">
+      <img
+        src="/img/Paula__6_.svg"
+        style="width: 250px"
+        class="img-responsive"
+      />
+      <div class="row">
+        <div class="column bracket-border-left"></div>
+        <div class="column">
+          <mat-form-field
+            appearance="outline"
+            appearance="fill"
+            style="width: 100%; margin-top: 1rem; padding-right: 1rem;"
+          >
+            <mat-label>Frage eingeben oder auswählen</mat-label>
+
+            <!-- Suchfeld für benutzerdefinierte Fragen -->
+            <input
+              type="text"
+              matInput
+              placeholder="Frage eingeben..."
+              [(ngModel)]="selectedQuestion"
+            />
+
+            <!-- Dropdown-Icon für die Auswahl der Beispielfragen -->
+            <button mat-icon-button matSuffix [matMenuTriggerFor]="menu">
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+
+            <!-- Menü für Beispielfragen -->
+            <mat-menu
+              #menu="matMenu"
+              yPosition="below"
+              xPosition="before"
+              [overlapTrigger]="false"
+            >
+              <button
+                mat-menu-item
+                *ngFor="let question of exampleQuestions"
+                (click)="selectExampleQuestion(question)"
+                class="wide-menu-item"
+              >
+                {{ question }}
+              </button>
+            </mat-menu>
+          </mat-form-field>
+          <div class="row">
+            <button
+              color="primary"
+              mat-flat-button
+              class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
+              style="width: 100%"
+            >
+              NVL Nicht-spezifischer Kreuzschmerz (2017)
+            </button>
+            <span class="col-lg-2 col-xl-2 col-md-2 col-sx-0 col-sm-0"></span>
+            <button
+              color="primary"
+              mat-flat-button
+              class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
+              style="width: 100%"
+            >
+              NVL COPD (2021)
+            </button>
+          </div>
+          <div class="row">
+            <div class="toggle-container col-lg-12 col-xl-12 col-md-12">
+                <span>einfache Sprache</span>
+                <mat-slide-toggle [(ngModel)]="useComplexLanguage" color="primary" sytel="width:auto"></mat-slide-toggle>
+                <span>detaillierte Antwort</span>
+              </div>
+          </div>
+
+          <!--Info Text unter der Suchleiste-->
+          <div>
+            <p>
+              Für die Generierung der Antworten nutzen wir Künstliche
+              Intelligenz (KI). Trotz größter Sorgfalt beim Einsatz der KI kann
+              es zu ungenauen oder fehlerhaften Antworten kommen. Versichern Sie
+              sich bitte immer in der Leitlinie. Wir haben Verlinkungen zu den
+              entsprechenden Inhalten in den Empfehlungsboxen unterhalb der
+              Antwort eingefügt.<br />
+              <b>
+                Aus Sicherheitsgründen werden in dieser Demo-Version des
+                Prototypen die zuvor generierten Antworten, zu den oben
+                verfügbaren Beispielfragen, aus einer Datenbank geladen und
+                nicht in Echtzeit generiert
+              </b>
+            </p>
+          </div>
+        </div>
+        <div class="column bracket-border-right"></div>
+      </div>
+
+      <!--Abschlusstext-->
+      <div>
+        <p>
+          Die hier aufbereiteten Leitlinien wurden bereitgestellt durch das ÄZQ
+          und sind auch unter https://leitlinien.de abrufbar.
+        </p>
+        <p>
+          Ein Kooperationsprojekt der Alice Salomon Hochschule Berlin und der
+          Hochschule für Technik und Wirtschaft Berlin.
+
+          <br />
+          Das Projekt wird finanziert durch Mittel des Institut für angewandte
+          Forschung Berlin.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-xl-3"></div>
+</div>

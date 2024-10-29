@@ -1,6 +1,24 @@
 @import "custom-variables.scss";
 
-/* In deiner .css Datei */
+.bracket-border-left {
+  border-top: 5px solid #201e50;
+  border-left: 5px solid #201e50;
+  border-bottom: 5px solid #201e50;
+  border-right: none;
+  border-radius: 5px;
+  max-width: 0px;
+  margin: 0px;
+}
+.bracket-border-right {
+  border-top: 5px solid #201e50;
+  border-right: 5px solid #201e50;
+  border-bottom: 5px solid #201e50;
+  border-left: none;
+  border-radius: 5px;
+  max-width: 0px;
+  margin: 0px;
+}
+
 .region-topbar {
   background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
   overflow: hidden; /* Wird verwendet, um überfließende Inhalt zu verbergen */
@@ -35,13 +53,6 @@
   background-color: $navtopbar-bg-hover; /* Hintergrundfarbe beim Hoover-Effekt */
 }
 
-/*
-.mat-toolbar {
-  background-color: $brand-primary !important;
-}
-.mat-button {
-  color: white;
-}*/
 
 @media (max-width: 600px) {
   .example-spacer {
@@ -77,9 +88,11 @@
 }
 .row {
   display: flex;
+  width:100%;
   flex-wrap: wrap; // Ermöglicht Umbrüche bei Spalten, die die gesamte Breite überschreiten.
   margin-right: -15px;
   margin-left: -15px;
+  align-items: stretch; /* Elemente werden gestreckt, um die gleiche Höhe zu haben */
 }
 
 .column {
@@ -92,6 +105,14 @@
     flex-basis: 100%; // Spalte nimmt volle Breite ein (Stacked).
     max-width: 100%;
   }
+}
+.column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Zentriert horizontal */
+  justify-content: center; /* Zentriert vertikal, falls nötig */
+  text-align: center; /* Für zentrierten Text */
+  height: 100%; /* Eventuell nötig, um vertikal zentrieren zu erlauben */
 }
 
 
@@ -161,30 +182,33 @@
   font-size: 150%;
 }
 
-div {
-  overflow: inherit;
-}
-
-a{
-  text-decoration: none;
-  font-size: 110%;
-  white-space: normal;
-}
-
-button{
-  font-size: 110%;
-  min-width: min-content;
-}
-
-.example-icon {
-  padding: 0 14px;
-}
-
-.example-spacer {
-  flex: 1 1 auto;
-}
 
 .mat-sidenav-content{
     font-size: 200%;
     text-align: center;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wide-menu-item {
+  white-space: nowrap; /* Verhindert Zeilenumbruch */
+  min-width: 200px; /* Oder jede andere gewünschte Breite */
+}
+
+.mat-button-alone{
+  margin: 0.5rem 0rem;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Zentriert den gesamten Inhalt des containers horizontal */
+}
+
+.toggle-container span {
+  margin: 0 8px; /* Platz um die Toggle-Beschriftungen */
 }

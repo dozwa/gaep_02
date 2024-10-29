@@ -110,7 +110,7 @@ $my-m3-colours: (
 $theme: mat.define-theme(
   (
     color: (
-      theme-type: dark,
+      theme-type: light,
       primary: $my-m3-colours,
     ),
     typography: (
@@ -130,6 +130,7 @@ html {
 :root {
   mat-toolbar {
     --mat-toolbar-container-background-color: #{mat.get-theme-color($theme, primary, 40)};
+    color: white !important
   }
   // Lade alle Material-Komponenten mit dem definierten Theme
   @include mat.all-component-themes($theme);
@@ -139,6 +140,9 @@ html {
 
 .mat-toolbar {
   background-color: white;
+}
+.mat-toolbar a{
+  color: white !important;
 }
 
 .disclaimer {
