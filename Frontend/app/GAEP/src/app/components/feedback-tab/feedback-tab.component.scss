@@ -1,0 +1,21 @@
+.feedback-tab {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(50%);
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 15px; 
+}
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: inline-block;
+  }
+  
+  .feedback-tab:hover {
+    background-color: darkblue;
+  }
