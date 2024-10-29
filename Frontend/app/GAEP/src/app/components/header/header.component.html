@@ -1,43 +1,68 @@
-<!--<nav class="region-topbar">
-    <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/searchHistory">Suchverlauf</a></li>
-      <li><a href="/tutorial">Tutorial</a></li>
-      <li><a href="https://www.htw-berlin.de/impressum/">Impressum</a></li>
-      <li><a href="https://www.htw-berlin.de/datenschutz/">Datenschutz</a></li>
-    </ul>
-  </nav>-->
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
 
-  <mat-toolbar>
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-
-    <span>GAEP</span>
-
-
-    <a mat-button href="/home">
-      <mat-icon>home</mat-icon>
-      <span class="icon-text">Home</span>
+    <a mat-button class="companyName" routerLink="/">
+      <span>GAEP</span>
     </a>
-
-    <a mat-button href="/searchHistory">
-      <mat-icon>manage_search</mat-icon>
-      <span class="icon-text">Suchverlauf</span>
-    </a>
-
-    <a mat-button href="/tutorial">
-      <mat-icon>swipe_up</mat-icon>
-      <span class="icon-text">Tutorial</span>
-    </a>
-
-    <a mat-button href="https://www.htw-berlin.de/impressum/">
-      <span >Impressum</span>
-    </a>
-
-    <a mat-button href="https://www.htw-berlin.de/datenschutz/">
-      <span >Datenschutz</span>
-    </a>
-
-  </mat-toolbar>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button href="/home">
+        <mat-icon>home</mat-icon>
+        <span class="icon-text">Home</span>
+      </a>
   
+      <a mat-button href="/searchHistory">
+        <mat-icon>manage_search</mat-icon>
+        <span class="icon-text">Suchverlauf</span>
+      </a>
+  
+      <a mat-button href="/tutorial">
+        <mat-icon>swipe_up</mat-icon>
+        <span class="icon-text">Tutorial</span>
+      </a>
+  
+      <a mat-button href="https://www.htw-berlin.de/impressum/">
+        <span >Impressum</span>
+      </a>
+  
+      <a mat-button href="https://www.htw-berlin.de/datenschutz/">
+        <span >Datenschutz</span>
+      </a>
+    </div>
+  </mat-toolbar>
+
+    <mat-sidenav
+      color="primary"
+      #sidenav
+      fxLayout="column"
+      mode="over"
+      opened="false"
+      fxHide.gt-sm="true"
+    >
+      <div fxLayout="column"><a mat-button href="/home">
+        <mat-icon>home</mat-icon>
+        <span class="icon-text">Home</span>
+      </a>
+  
+      <a mat-button href="/searchHistory">
+        <mat-icon>manage_search</mat-icon>
+        <span class="icon-text">Suchverlauf</span>
+      </a>
+  
+      <a mat-button href="/tutorial">
+        <mat-icon>swipe_up</mat-icon>
+        <span class="icon-text">Tutorial</span>
+      </a>
+  
+      <a mat-button href="https://www.htw-berlin.de/impressum/">
+        <span >Impressum</span>
+      </a>
+  
+      <a mat-button href="https://www.htw-berlin.de/datenschutz/">
+        <span >Datenschutz</span>
+      </a>
+      </div>
+    </mat-sidenav>
