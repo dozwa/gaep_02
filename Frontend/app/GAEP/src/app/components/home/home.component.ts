@@ -10,9 +10,11 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatMenuModule } from '@angular/material/menu'; // Importiere MatMenuModule
 import { BrowserModule } from '@angular/platform-browser';
-
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButton} from '@angular/material/button';
+
+import { GeapBackendService } from '../../services/geap-backend.service';
+import { ApiResponse } from '../../models/Response';
 
 @Component({
   selector: 'app-home',
@@ -40,7 +42,8 @@ questionControl = new FormControl();
 useComplexLanguage: Boolean = false; // gibt an ob einfache oder fachsprache Verwendet werden soll
 
 
-constructor() {
+constructor(private geapService:GeapBackendService) {
+  
 }
 
 
