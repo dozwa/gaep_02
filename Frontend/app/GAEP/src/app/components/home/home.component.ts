@@ -24,16 +24,6 @@ import { ApiResponse } from '../../models/Response';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
- // Array mit Beispiel-Fragen
- exampleQuestions: string[] = [
-  'Sind NSARs bei chronischem Kreuzschmerz empfehlenswert?',
-  'Welche Übungen werden für Kreuzschmerzen empfohlen?',
-  'Wie können psychosoziale Risikofaktoren bei Kreuzschmerzen erkannt werden?',
-  'Ist eine Bildgebung zur Diagnose von Kreuzschmerzen sinnvoll?',
-  'Welches Training wird bei COPD empfohlen?',
-  'Wird Atemtherapie in der Behandlung von COPD empfohlen?',
-  'Wie kann ich bei COPD eine Tabakentwöhnung durchführen?'
-];
 
 // Steuerung der Eingabe
 selectedQuestion = '';
@@ -43,13 +33,17 @@ useComplexLanguage: Boolean = false; // gibt an ob einfache oder fachsprache Ver
 
 
 constructor(private geapService:GeapBackendService) {
-  
+
 }
 
 
 // Auswahl einer Frage aus dem Menü
 selectExampleQuestion(question: string) {
   this.selectedQuestion = question;
+}
+
+getExampleQuestions():string[]{
+  return this.geapService.getExampleQuestions();
 }
 
 }

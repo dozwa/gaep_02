@@ -39,7 +39,7 @@
             >
               <button
                 mat-menu-item
-                *ngFor="let question of exampleQuestions"
+                *ngFor="let question of this.getExampleQuestions()"
                 (click)="selectExampleQuestion(question)"
                 class="wide-menu-item"
               >

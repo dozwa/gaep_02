@@ -12,6 +12,17 @@ import { Request } from '../models/Request';
 export class GeapBackendService {
   private dummyDataResponse = 'dummyData/JSON_sturcture_im.txt'; // Pfad zu deiner JSON-Datei
 
+  // Array mit Beispiel-Fragen
+  exampleQuestions: string[] = [
+    'Sind NSARs bei chronischem Kreuzschmerz empfehlenswert?',
+    'Welche Übungen werden für Kreuzschmerzen empfohlen?',
+    'Wie können psychosoziale Risikofaktoren bei Kreuzschmerzen erkannt werden?',
+    'Ist eine Bildgebung zur Diagnose von Kreuzschmerzen sinnvoll?',
+    'Welches Training wird bei COPD empfohlen?',
+    'Wird Atemtherapie in der Behandlung von COPD empfohlen?',
+    'Wie kann ich bei COPD eine Tabakentwöhnung durchführen?',
+  ];
+
   constructor(private http: HttpClient) {}
 
   getAnswer(userRequest: Request): Observable<ApiResponse> {
@@ -20,5 +31,10 @@ export class GeapBackendService {
 
   getAnswerDummyData(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.dummyDataResponse);
+  }
+
+  // Wird in der HomeComponent genutzt. Hier können später die Beispielfragen über eine API oder ähnliches geholt werden.
+  getExampleQuestions(): string[] {
+    return this.exampleQuestions;
   }
 }
