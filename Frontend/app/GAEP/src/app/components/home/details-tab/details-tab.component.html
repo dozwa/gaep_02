@@ -1,0 +1,33 @@
+<mat-card class="main-card">
+  <mat-card-header class="card-header">
+    <span class="header-title" matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipRelevanz()">{{this.relevanz}}</span><br/>
+    <span class="header-text">{{this.refernce.reference_text}}</span>
+    <span matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipEmpfehlungsgrad()">{{ this.empfehlungsgrad }}</span>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+    <div class="summary row">
+      <img
+        class="col-sx-0 col-sm-0 col-md-6 col-lg-2 col-xl-2"
+        src="/img/KI_Brain.svg"
+        style="width: 100px"
+      />
+      <div class="summary-text">
+        <p class="summary-title">KI Zusammenfassung:</p>
+        <p>{{this.refernce.generated_summary}}
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-footer class="footer row">
+    <div>
+      <p class="reference">
+        Empfehlungsbasis: Literatur [215; 253-255] > Quellen anzeigen
+      </p>
+    </div>
+    <div>
+      <a class="pdf-link" href="{{this.refernce.guideline_url}}">PDF-Version öffnen</a>
+    </div>
+  </mat-card-footer>
+</mat-card>

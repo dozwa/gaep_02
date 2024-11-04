@@ -5,5 +5,5 @@ export interface Request {
     a_laenge: number; // ????
     n_empfehlung: number; // ???
     relevanz: number; //???
-    detail: boolean; //???
+    detail: Boolean; //???
 }

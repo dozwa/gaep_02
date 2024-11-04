@@ -13,7 +13,7 @@
           <mat-form-field
             appearance="outline"
             appearance="fill"
-            style="width: 100%; margin-top: 1rem; padding-right: 1rem;"
+            style="width: 100%; margin-top: 1rem; padding-right: 1rem"
           >
             <mat-label>Frage eingeben oder auswählen</mat-label>
 
@@ -47,31 +47,41 @@
               </button>
             </mat-menu>
           </mat-form-field>
+          <div clas="row">
+            <ng-container *ngFor="let button of leitlinien; let i = index">
+              <button
+                color="primary"
+                mat-stroked-button
+                class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
+                style="width: 100%; margin: 0% 1%"
+                [class.button-selected]="selectedLeitlinie == i"
+                (click)="selectedLeitlinie = i"
+              >
+                {{ button }}
+              </button>
+            </ng-container>
+          </div>
+          <div class="row" style="margin-top: 1rem">
+            <div class="toggle-container col-12">
+              <span>einfache Sprache</span>
+              <mat-slide-toggle
+                [(ngModel)]="useComplexLanguage"
+                color="primary"
+                sytel="width:auto"
+              ></mat-slide-toggle>
+              <span>detaillierte Antwort</span>
+            </div>
+          </div>
           <div class="row">
             <button
               color="primary"
               mat-flat-button
               class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
               style="width: 100%"
+              (click)="this.sendRequest()"
             >
-              NVL Nicht-spezifischer Kreuzschmerz (2017)
+              Anfrage senden
             </button>
-            <span class="col-lg-2 col-xl-2 col-md-2 col-sx-0 col-sm-0"></span>
-            <button
-              color="primary"
-              mat-raised-button
-              class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
-              style="width: 100%"
-            >
-              NVL COPD (2021)
-            </button>
-          </div>
-          <div class="row">
-            <div class="toggle-container col-12">
-                <span>einfache Sprache</span>
-                <mat-slide-toggle [(ngModel)]="useComplexLanguage" color="primary" sytel="width:auto"></mat-slide-toggle>
-                <span>detaillierte Antwort</span>
-              </div>
           </div>
 
           <!--Info Text unter der Suchleiste-->
@@ -95,6 +105,12 @@
         <div class="column bracket-border-right"></div>
       </div>
 
+      <!--Antwort Part-->
+      <div *ngIf="this.showResponse" class="row" style="margin-top: 1rem">
+        <div class="col-12">
+            <app-details-tab *ngFor="let reference of this.currentResponse.references" [refernce]="reference"></app-details-tab>
+        </div>
+      </div>
       <!--Abschlusstext-->
       <div>
         <p>

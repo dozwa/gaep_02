@@ -1,24 +1,5 @@
 @import "custom-variables.scss";
 
-.bracket-border-left {
-  border-top: 5px solid #201e50;
-  border-left: 5px solid #201e50;
-  border-bottom: 5px solid #201e50;
-  border-right: none;
-  border-radius: 5px;
-  max-width: 0px;
-  margin: 0px;
-}
-.bracket-border-right {
-  border-top: 5px solid #201e50;
-  border-right: 5px solid #201e50;
-  border-bottom: 5px solid #201e50;
-  border-left: none;
-  border-radius: 5px;
-  max-width: 0px;
-  margin: 0px;
-}
-
 .region-topbar {
   background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
   overflow: hidden; /* Wird verwendet, um überfließende Inhalt zu verbergen */
@@ -93,6 +74,7 @@
   margin-right: -15px;
   margin-left: -15px;
   align-items: stretch; /* Elemente werden gestreckt, um die gleiche Höhe zu haben */
+  justify-content: center;
 }
 
 .column {
@@ -215,4 +197,10 @@
 
 .input-modal{
   width:100%;
+}
+
+
+
+button.button-selected {
+  background-color: $bg-color-secondary;
 }
