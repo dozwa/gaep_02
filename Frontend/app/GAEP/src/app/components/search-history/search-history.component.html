@@ -1,1 +1,16 @@
-<p>search-history works!</p>
+html
+<div class="row">
+  <div class="col-lg-2 col-xl-3"></div>
+  <div class="col-sx-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
+    <div class="column">
+      <h1>Suchverlauf</h1>
+      <ul>
+        <li *ngFor="let entry of searchHistory" (click)="onQuestionClick(entry)" class="search-entry">
+          <strong>Frage:</strong> {{ entry.question }}<br/>
+          <strong>Antworttyp:</strong> {{ entry.type }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-2 col-xl-3"></div>
+</div>
