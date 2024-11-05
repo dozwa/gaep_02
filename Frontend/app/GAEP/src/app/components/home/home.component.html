@@ -104,6 +104,19 @@
 
         <!-- Folgender Teil wird angezeigt wenn eine Frage gestellt wurde-->
         <div class="column" *ngIf="this.showResponse">
+          <div class="row">
+            <button
+              color="primary"
+              mat-stroked-button
+              class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone"
+              style="width: 100%"
+              (click)="this.refresh()"
+            >
+              Neue Frage stellen
+            <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+
           <mat-card class="main-card">
             <mat-card-header class="card-header"> KI-Antwort </mat-card-header>
 
