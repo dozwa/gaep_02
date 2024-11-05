@@ -13,12 +13,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 
 import { GeapBackendService } from '../../services/geap-backend.service';
-import { ApiResponse } from '../../models/Response';
+import { ApiResponse, Reference } from '../../models/Response';
 import { Request } from '../../models/Request';
 
 import { DetailsTabComponent } from './details-tab/details-tab.component';
+import { DetailsModalComponent } from '../../modals/details-modal/details-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -74,7 +76,7 @@ export class HomeComponent {
     references: []
   };;
 
-  constructor(private geapService: GeapBackendService) {}
+  constructor(private geapService: GeapBackendService,public dialog: MatDialog) {}
 
   // Auswahl einer Frage aus dem Menü
   selectExampleQuestion(question: string) {
@@ -111,5 +113,16 @@ export class HomeComponent {
   refresh(){
     this.showResponse=false;
     this.selectedQuestion = "";
+  }
+
+  // Öffnet ein Popup mit den Dateils der Referenz
+  openDetailsModal(reference:Reference){
+
+    const dialogRef = this.dialog.open(DetailsModalComponent, {data: reference, panelClass: 'modal-details'});
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Details Dialog wurde geschlossen');
+    });
   }
 }

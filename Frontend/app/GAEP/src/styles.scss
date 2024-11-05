@@ -1,5 +1,5 @@
-@import "stylings/custom-variables.scss";
 @import "stylings/custom-theme.scss";
+@import "stylings/custom-styling.scss";
 
 .bracket-border-left {
   border-top: 5px solid #201e50;
@@ -105,4 +105,40 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.modal-details {
+  max-width: none !important;
+  max-height: none !important;
+  width: auto !important;
+  height: auto !important;
+
+  @media (max-width: 600px) {
+    // Für Smartphones
+    min-width: 200px !important;
+    max-width: 90vw !important;
+    //width: 90vw !important;
+    //height: 80vh !important; // 80% der Bildschirmhöhe
+  }
+
+  @media (min-width: 601px) and (max-width: 960px) {
+    // Für Tablets
+    min-width: 250px !important;
+    max-width: 85vw !important;
+    //height: 60vh !important; // 60% der Bildschirmhöhe
+  }
+
+  @media (min-width: 961px) and (max-width: 1199) {
+    // Für größere Bildschirme
+    min-width: 300px !important; // Passe die Formel nach deinem Geschmack an
+    max-width: 80vw !important;
+    //height: 50vh !important; // Auch hier kann die Höhe angepasst werden
+  }
+
+  @media (min-width: 1200px) {
+    // Für größere Bildschirme
+    min-width: 400px !important; // Passe die Formel nach deinem Geschmack an
+    max-width: 70vw !important;
+    //height: 50vh !important; // Auch hier kann die Höhe angepasst werden
+  }
 }

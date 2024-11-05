@@ -204,3 +204,44 @@
 button.button-selected {
   background-color: $bg-color-secondary;
 }
+
+
+
+/* Mat Card Style*/
+// Hauptstil für die Karte
+.main-card {
+  width: 100%;
+  margin: 20px auto;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: lighten($bg-color-secondary, 5%);
+}
+// Kopfzeilen-Stil 
+.card-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+.header-text {
+  flex: 1;
+  font-size: 14px;
+  color: #000;
+  font-weight: bold;
+}
+// Inhalt der Karte 
+.card-content {
+  padding: 16px;
+  margin: 0% 2%;
+  border-radius: 20px;
+  background-color: $bg-color-secondary;
+}
+// Fußzeilen-Stil
+.card-footer {
+  border-top: 1px solid #e0e0e0;
+  padding: 16px;
+  text-align: center;
+  justify-content: space-between;
+}

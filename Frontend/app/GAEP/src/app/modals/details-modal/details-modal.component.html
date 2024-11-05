@@ -1,0 +1,41 @@
+<mat-dialog-content>
+  <div mat-dialog-title style="position: absolute; right: 8px; top: 8px; cursor: pointer; z-index: 100;">
+      <mat-icon (click)="this.onClose()">close</mat-icon>
+  </div>
+
+  <div>
+    <div style="padding: 1rem">
+      <app-details-tab [refernce]="this.reference"></app-details-tab>
+      <mat-card class="main-card" style="cursor: default !important;">
+        <mat-card-header class="card-header" style="cursor: pointer;">
+            <span class="header-text" (click)="this.showDetails=!this.showDetails">
+                Vertiefende Informationen
+
+            </span>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="this.showDetails">
+                <p *ngFor="let detail of this.reference.details">
+                    {{ detail.content }}
+                </p>
+            </div>
+            <div *ngIf="!this.showDetails" (click)="this.showDetails=!this.showDetails">
+                mehr ... 
+            </div>
+        </mat-card-content>
+
+        <mat-card-footer class="card-footer row">
+          <button
+            color="primary"
+            mat-flat-button
+            class="col-lg-2 col-xl-2 col-md-3 col-sx-4 col-sm-5 mat-button-alone"
+            style="margin-left: 1rem"
+          >
+            Quellen
+          </button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</mat-dialog-content>

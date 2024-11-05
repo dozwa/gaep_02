@@ -1,0 +1,24 @@
+@import "../../../stylings/custom-variables.scss";
+@import "../../../stylings/custom-styling.scss";
+
+
+.icon {
+    font-size: 20px;
+    color: #333;
+    margin-right: 8px;
+    cursor: help !important;
+  }
+  
+  .header-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    margin-right: 8px;
+  }
+  
+  .header-text {
+    flex: 1;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+  }
