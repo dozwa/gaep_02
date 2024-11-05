@@ -231,6 +231,18 @@ button.button-selected {
   color: #000;
   font-weight: bold;
 }
+.header-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+  margin-right: 8px;
+}
+.icon {
+  font-size: 20px;
+  color: #333;
+  margin-right: 8px;
+  cursor: help !important;
+}
 // Inhalt der Karte 
 .card-content {
   padding: 16px;

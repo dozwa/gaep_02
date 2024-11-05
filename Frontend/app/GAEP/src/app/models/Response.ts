@@ -2,6 +2,12 @@
 /* Reference: Das Datenmodell für jede Referenz in der references-Liste, welche zusätzliche Informationen wie generated_summary, relevance, und eine Liste von details enthält. */
 /* ReferenceDetail: Modell für detaillierte Informationen innerhalb einer Referenz.*/
 
+/* Source: Modell für eine Quelle*/
+export interface Source {
+    source_id:number;
+    content:string;
+    url:string;
+}
 
 /* ReferenceDetail: Modell für detaillierte Informationen innerhalb einer Referenz.*/
 export interface ReferenceDetail {
@@ -16,7 +22,7 @@ export interface Reference {
     reference_id: string;
     generated_summary: string;
     relevance: string;
-    sources: string[];
+    sources: Source[];
     details: ReferenceDetail[];
     reference_text: string;
     reference_sort: number;

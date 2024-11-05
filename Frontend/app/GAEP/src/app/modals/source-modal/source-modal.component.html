@@ -1,0 +1,41 @@
+<mat-dialog-content>
+    <div mat-dialog-title style="position: absolute; right: 8px; top: 8px; cursor: pointer; z-index: 100;">
+        <mat-icon (click)="this.onClose()">close</mat-icon>
+    </div>
+  
+    <div *ngIf="this.noSourcesAvailable" style="padding: 1rem;">
+        <h1>Es sind keine Quellen verfügbar!</h1>
+    </div>
+    
+    <div *ngIf="!this.noSourcesAvailable">
+        <mat-card class="main-card" *ngFor="let source of this.sources">
+            <mat-card-header class="card-header">
+                <span class="header-text">{{source.source_id}}</span>
+                
+            </mat-card-header>
+          
+            <mat-card-content class="card-content">
+                {{source.content}}
+            </mat-card-content>
+
+            <mat-card-footer class="card-footer row">
+                <a
+                  color="primary"
+                  mat-raised-button
+                  class="col-lg-2 col-xl-2 col-md-3 col-sx-4 col-sm-5 mat-button-alone"
+                  style="margin-left: 1rem;"
+                  href="{{source.url}}" 
+                  target="_blank"
+                >
+                  Link
+            </a>
+              </mat-card-footer>
+          </mat-card>
+
+    </div>
+    
+
+
+
+  </mat-dialog-content>
+  

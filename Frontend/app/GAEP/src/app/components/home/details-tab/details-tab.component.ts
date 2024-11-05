@@ -3,6 +3,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Reference } from '../../../models/Response';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
+import { SourceModalComponent } from '../../../modals/source-modal/source-modal.component';
 
 /*
 export enum Empfehlengrad{
@@ -44,7 +46,7 @@ export class DetailsTabComponent implements OnInit{
 
   @Input() refernce!: Reference;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     console.log(this.refernce);
   }
   ngOnInit(): void {
@@ -52,6 +54,16 @@ export class DetailsTabComponent implements OnInit{
       console.log(this.refernce);
       this.empfehlungsgrad = Empfehlengrad[this.refernce.level as keyof typeof Empfehlengrad];
       this.relevanz = Relevanz[this.refernce.relevance as keyof typeof Relevanz];
+  }
+
+  showSources(){
+    
+    const dialogRef = this.dialog.open(SourceModalComponent, {data: this.refernce.sources, panelClass: 'modal-details'});
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Source Dialog wurde geschlossen');
+    });
   }
   
 
