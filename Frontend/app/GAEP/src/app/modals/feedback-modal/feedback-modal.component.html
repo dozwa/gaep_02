@@ -7,30 +7,28 @@
       <p>
         Help us make your experience better and share your feedback with us!
       </p>
-      <form class="example-form">
         <mat-form-field style="width:100%">
           <mat-label>Subject</mat-label>
-          <input matInput placeholder="Summarize your feedback item in a few words"/>
+          <input [(ngModel)]="subject" matInput placeholder="Summarize your feedback item in a few words" required>
         </mat-form-field>
 
         <mat-form-field style="width:100%">
           <mat-label>Comment</mat-label>
-          <textarea matInput placeholder="Please add a detailed description, including steps you took before finding the issue, or how this idea would help improve the experience for you and other users."></textarea>
+          <textarea [(ngModel)]="comment" matInput placeholder="Please add a detailed description, including steps you took before finding the issue, or how this idea would help improve the experience for you and other users."></textarea>
         </mat-form-field>
 
         <mat-form-field style="width:100%">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="name@company.com"/>
+          <input [(ngModel)]="mail" matInput placeholder="name@company.com" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
         </mat-form-field>
 
-      </form>
     </div>
 
     <div class="col-lg-2 col-xl-2 col-md-1 col-sx-0 col-sm-0"></div>
   </div>
   <div style="text-align:end;">
-    <button color="primary" mat-raised-button class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone button-modal"> Cancel</button>
-    <button color="primary" mat-raised-button class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone button-modal"> Clear</button>
+    <button color="primary" mat-raised-button class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone button-modal" (click)="this.onClose()"> Cancel</button>
+    <button color="primary" mat-raised-button class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone button-modal" (click)="this.onClear()"> Clear</button>
     <button color="primary" mat-flat-button class="col-lg-5 col-xl-5 col-md-5 col-sx-12 col-sm-12 mat-button-alone button-modal"> Submit</button>
     
   </div>
