@@ -1,3 +1,5 @@
+@import "../../../stylings/custom-variables.scss";
+
 .bracket-border-left {
     border-top: 5px solid #201e50;
     border-left: 5px solid #201e50;
@@ -15,4 +17,23 @@
     border-radius: 5px;
     max-width: 0px;
     margin: 0px;
+  }
+
+  .main-card {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: lighten($brand-primary, 0%);
+    color: white;
+  }
+  .card-header {
+    font-weight: 500;
+    font-size: larger;
+    margin: 0.5rem 0rem 1rem 0rem;
+  }
+  .content {
+    text-align: left;
   }

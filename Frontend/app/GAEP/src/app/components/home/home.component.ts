@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu'; // Importiere MatMenuMod
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 import { GeapBackendService } from '../../services/geap-backend.service';
 import { ApiResponse } from '../../models/Response';
@@ -34,7 +35,8 @@ import { DetailsTabComponent } from './details-tab/details-tab.component';
     MatMenuModule,
     MatSlideToggleModule,
     MatButton,
-    DetailsTabComponent
+    DetailsTabComponent,
+    MatCardModule
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -57,7 +59,7 @@ export class HomeComponent {
   useComplexLanguage: Boolean = false; 
 
   // Parameter zum Anzeigen der Antwort
-  showResponse: Boolean = true;
+  showResponse: Boolean = false;
   currentResponse: ApiResponse = {
     optimized_question: '',
     generated_answer: '',

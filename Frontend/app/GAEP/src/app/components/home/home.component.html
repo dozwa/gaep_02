@@ -9,14 +9,15 @@
       />
       <div class="row">
         <div class="column bracket-border-left"></div>
-        <div class="column">
+
+        <!-- Folgender Teil wird angezeigt um eine Frage zu stellen-->
+        <div class="column" *ngIf="!this.showResponse">
           <mat-form-field
             appearance="outline"
             appearance="fill"
             style="width: 100%; margin-top: 1rem; padding-right: 1rem"
           >
             <mat-label>Frage eingeben oder auswählen</mat-label>
-
             <!-- Suchfeld für benutzerdefinierte Fragen -->
             <input
               type="text"
@@ -24,12 +25,10 @@
               placeholder="Frage eingeben..."
               [(ngModel)]="selectedQuestion"
             />
-
             <!-- Dropdown-Icon für die Auswahl der Beispielfragen -->
             <button mat-icon-button matSuffix [matMenuTriggerFor]="menu">
               <mat-icon>arrow_drop_down</mat-icon>
             </button>
-
             <!-- Menü für Beispielfragen -->
             <mat-menu
               #menu="matMenu"
@@ -47,6 +46,7 @@
               </button>
             </mat-menu>
           </mat-form-field>
+
           <div clas="row">
             <ng-container *ngFor="let button of leitlinien; let i = index">
               <button
@@ -83,9 +83,8 @@
               Anfrage senden
             </button>
           </div>
-
           <!--Info Text unter der Suchleiste-->
-          <div>
+          <div *ngIf="!this.showResponse">
             <p>
               Für die Generierung der Antworten nutzen wir Künstliche
               Intelligenz (KI). Trotz größter Sorgfalt beim Einsatz der KI kann
@@ -102,13 +101,34 @@
             </p>
           </div>
         </div>
+
+        <!-- Folgender Teil wird angezeigt wenn eine Frage gestellt wurde-->
+        <div class="column" *ngIf="this.showResponse">
+          <mat-card class="main-card">
+            <mat-card-header class="card-header"> KI-Antwort </mat-card-header>
+
+            <mat-card-content class="content">
+              {{ this.currentResponse.generated_answer }}
+              <br />
+              <ul>
+                <li *ngFor="let ref of this.currentResponse.references">
+                  {{ ref.reference_text }} ({{ ref.reference_id }})
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
         <div class="column bracket-border-right"></div>
       </div>
 
       <!--Antwort Part-->
       <div *ngIf="this.showResponse" class="row" style="margin-top: 1rem">
         <div class="col-12">
-            <app-details-tab *ngFor="let reference of this.currentResponse.references" [refernce]="reference"></app-details-tab>
+          <app-details-tab
+            *ngFor="let reference of this.currentResponse.references"
+            [refernce]="reference"
+          ></app-details-tab>
         </div>
       </div>
       <!--Abschlusstext-->
