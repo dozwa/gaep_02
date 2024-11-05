@@ -104,6 +104,11 @@
 
         <!-- Folgender Teil wird angezeigt wenn eine Frage gestellt wurde-->
         <div class="column" *ngIf="this.showResponse">
+
+          <div class="question">
+            {{this.selectedQuestion}}
+          </div>
+
           <div class="row">
             <button
               color="primary"

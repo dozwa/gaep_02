@@ -110,5 +110,6 @@ export class HomeComponent {
   // Wenn eine Frage gestellt wurde und eine neue Frage gestellt werden soll
   refresh(){
     this.showResponse=false;
+    this.selectedQuestion = "";
   }
 }
