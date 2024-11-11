@@ -1,6 +1,6 @@
 <mat-card class="main-card">
   <mat-card-header class="card-header">
-    <span class="header-title" matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipRelevanz()">{{this.relevanz}}</span><br/>
+    <span class="header-title" matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipRelevanz()">{{this.relevanz}}</span> {{this.refernce.reference_id}}<br/>
     <span class="header-text">{{this.refernce.reference_text}}</span>
     <span matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipEmpfehlungsgrad()">{{ this.empfehlungsgrad }}</span>
   </mat-card-header>
