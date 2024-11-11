@@ -212,10 +212,19 @@ export class HomeComponent {
 
       case SortCriteria.NUMMERIERUNG:
         this.currentReferences.sort((a, b) => {
-          if (this.currentSortUp) {
-            return a.reference_id.localeCompare(b.reference_id);
-          } else {
-            return b.reference_id.localeCompare(a.reference_id);
+          var [aFirst, aSecond] = a.reference_id.split('-').map(Number);
+          var [bFirst, bSecond] = b.reference_id.split('-').map(Number);
+
+          if(this.currentSortUp){
+            [aFirst, bFirst] = [bFirst, aFirst];
+            [aSecond, bSecond] = [bSecond, aSecond];
+          }
+
+          if (aFirst !== bFirst) {
+            
+            return aFirst - bFirst;
+          }else{
+            return aSecond - bSecond;
           }
         });
         break;
