@@ -94,7 +94,7 @@ export class HomeComponent {
     user_question: '',
     references: [],
   };
-  currentReferences:Array<Reference> = [];
+  currentReferences: Array<Reference> = [];
 
   // Diese beiden Zeilen dienen dazu, dass SortCriteria auch im HTML template genutzt werden kann
   static SortCriteria = SortCriteria;
@@ -103,6 +103,9 @@ export class HomeComponent {
   // Kriterium zum Sortieren
   currentCritia: SortCriteria = SortCriteria.RELEVANZ;
   currentSortUp: boolean = true;
+
+  // Eingabe in der Suchleiste (Filter)
+  searchbarInput = "";
 
   constructor(
     private geapService: GeapBackendService,
@@ -170,18 +173,16 @@ export class HomeComponent {
 
     this.sortReferences();
   }
+
   sortReferences() {
-
-    switch (this.currentCritia){
-
+    switch (this.currentCritia) {
       case SortCriteria.RELEVANZ: // Sortieren nach Relevanz
-
         this.currentReferences.sort((a, b) => {
           const relevanz_a =
             RelevanzPriority[a.relevance as keyof typeof RelevanzPriority];
           const relevanz_b =
             RelevanzPriority[b.relevance as keyof typeof RelevanzPriority];
-  
+
           if (this.currentSortUp) {
             return relevanz_b - relevanz_a; // Nach Relevanz aufsteigend sortieren
           } else {
@@ -191,10 +192,15 @@ export class HomeComponent {
         break;
 
       case SortCriteria.EMPFEHLUNGSGRAD: // Sortieren nach Empfehlungsgrad
-
-        this.currentReferences.sort((a,b)=>{
-          const recommendation_a  = EmpfehlengradPriority[a.level as keyof typeof EmpfehlengradPriority];
-          const recommendation_b  = EmpfehlengradPriority[b.level as keyof typeof EmpfehlengradPriority];
+        this.currentReferences.sort((a, b) => {
+          const recommendation_a =
+            EmpfehlengradPriority[
+              a.level as keyof typeof EmpfehlengradPriority
+            ];
+          const recommendation_b =
+            EmpfehlengradPriority[
+              b.level as keyof typeof EmpfehlengradPriority
+            ];
 
           if (this.currentSortUp) {
             return recommendation_b - recommendation_a; // Nach Empfehlungsgrad aufsteigend sortieren
@@ -205,16 +211,39 @@ export class HomeComponent {
         break;
 
       case SortCriteria.NUMMERIERUNG:
-        this.currentReferences.sort((a,b)=>{
-
-          if(this.currentSortUp){
+        this.currentReferences.sort((a, b) => {
+          if (this.currentSortUp) {
             return a.reference_id.localeCompare(b.reference_id);
-          }else{
+          } else {
             return b.reference_id.localeCompare(a.reference_id);
           }
-
-        })
+        });
         break;
     }
+  }
+
+  searchRefernces() {
+    var search = this.searchbarInput;
+    if (search.length == 0 || search == '' || search == ' ') {
+      this.currentReferences = this.currentResponse.references.slice();
+      this.sortReferences();
+      return;
+    }
+    search = search.toLocaleLowerCase();
+    this.currentReferences = this.currentResponse.references.filter((ref) => {
+      return (
+        ref.reference_id.toLocaleLowerCase().includes(search) ||
+        ref.generated_summary.toLocaleLowerCase().includes(search) ||
+        ref.reference_text.toLocaleLowerCase().includes(search) ||
+        ref.chapter.toLocaleLowerCase().includes(search) ||
+        ref.search_string.toLocaleLowerCase().includes(search)
+      );
+    });
+    this.sortReferences();
+  }
+
+  resetFilterSearch(){
+    this.searchbarInput = "";
+    this.searchRefernces();
   }
 }

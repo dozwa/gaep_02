@@ -175,7 +175,10 @@
                 </span>
             </div>
             <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10" >
-              <input matInput class="inputFilter" placeholder="Suchen" value="">
+              <span>
+                <input matInput class="inputFilter" placeholder="Suchen" [(ngModel)]="searchbarInput" (keyup.enter)="searchRefernces()">
+                <mat-icon class="inline-icon" style="cursor: pointer;" (click)="resetFilterSearch()">refresh</mat-icon>
+              </span>
             </div>
           </div>
         </mat-card-content>
