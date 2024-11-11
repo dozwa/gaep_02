@@ -26,8 +26,8 @@
               [(ngModel)]="selectedQuestion"
             />
             <!-- Dropdown-Icon für die Auswahl der Beispielfragen -->
-            <button mat-icon-button matSuffix [matMenuTriggerFor]="menu">
-              <mat-icon>arrow_drop_down</mat-icon>
+            <button mat-icon-button matSuffix [matMenuTriggerFor]="menu" class="question-icon">
+              <mat-icon >arrow_drop_down</mat-icon>
             </button>
             <!-- Menü für Beispielfragen -->
             <mat-menu
@@ -35,19 +35,20 @@
               yPosition="below"
               xPosition="before"
               [overlapTrigger]="false"
+              class = "question-dropdown"
             >
               <button
                 mat-menu-item
                 *ngFor="let question of this.getExampleQuestions()"
                 (click)="selectExampleQuestion(question)"
-                class="wide-menu-item"
+                class="wide-menu-items question-dropdown"
               >
                 {{ question }}
               </button>
             </mat-menu>
           </mat-form-field>
 
-          <div clas="row">
+          <div clas="row" style="margin: 1rem 0rem;">
             <ng-container *ngFor="let button of leitlinien; let i = index">
               <button
                 color="primary"
@@ -61,18 +62,18 @@
               </button>
             </ng-container>
           </div>
-          <div class="row" style="margin-top: 1rem">
-            <div class="toggle-container col-12">
-              <span>einfache Sprache</span>
-              <mat-slide-toggle
-                [(ngModel)]="useComplexLanguage"
-                color="primary"
-                sytel="width:auto"
-              ></mat-slide-toggle>
-              <span>detaillierte Antwort</span>
-            </div>
+
+
+          <div class="language-select" style="margin: 2rem 0rem;">
+            <mat-radio-group [(ngModel)]="useComplexLanguage">
+              <mat-radio-button [value]="true">einfache Sprache</mat-radio-button>
+              <mat-radio-button [value]="false">detaillierte Sprache</mat-radio-button>
+            </mat-radio-group>
+            
           </div>
-          <div class="row">
+
+
+          <div class="row" style="margin-top: 1rem;">
             <button
               color="primary"
               mat-flat-button

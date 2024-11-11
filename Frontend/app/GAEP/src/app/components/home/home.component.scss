@@ -75,3 +75,19 @@
   padding: 8px 8px;
   box-sizing: border-box;
 }
+.language-select {
+  margin-top: 1rem; 
+  text-align: left; 
+  display:flex;
+  padding-left: 1rem;
+}
+.question-dropdown {
+  white-space: nowrap !important;
+}
+::ng-deep .mat-mdc-menu-panel {
+  max-width: none !important;
+}
+.question-icon {
+  background-color: rgba(0, 0, 0, 0.0);
+  border: none;
+}

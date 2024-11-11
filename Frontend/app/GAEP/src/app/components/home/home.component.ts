@@ -14,6 +14,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { GeapBackendService } from '../../services/geap-backend.service';
 import { ApiResponse, Reference } from '../../models/Response';
@@ -59,6 +60,7 @@ enum EmpfehlengradPriority {
     MatButton,
     DetailsTabComponent,
     MatCardModule,
+    MatRadioModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -71,8 +73,6 @@ export class HomeComponent {
   leitlinien = [
     'NVL Nicht-spezifischer Kreuzschmerz (2017)',
     'NVL COPD (2021)',
-    'NVL COPD (2022)',
-    'NVL COPD (2022)',
   ];
   selectedLeitlinie = 0;
 
