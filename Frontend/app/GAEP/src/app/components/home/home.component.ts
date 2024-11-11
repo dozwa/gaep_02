@@ -22,6 +22,26 @@ import { Request } from '../../models/Request';
 import { DetailsTabComponent } from './details-tab/details-tab.component';
 import { DetailsModalComponent } from '../../modals/details-modal/details-modal.component';
 
+export enum SortCriteria {
+  RELEVANZ,
+  NUMMERIERUNG,
+  EMPFEHLUNGSGRAD,
+}
+enum RelevanzPriority {
+  NONE = 0,
+  HOCH = 3,
+  MITTEL = 2,
+  NIEDRIG = 1,
+}
+enum EmpfehlengradPriority {
+  None = -1,
+  soll = 5,
+  sollte = 4,
+  kann = 3,
+  sollteNicht = 2,
+  sollNicht = 1,
+  statement = 0,
+}
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -38,27 +58,26 @@ import { DetailsModalComponent } from '../../modals/details-modal/details-modal.
     MatSlideToggleModule,
     MatButton,
     DetailsTabComponent,
-    MatCardModule
-],
+    MatCardModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
   // Steuerung der Eingabe
   selectedQuestion = '';
 
   // Auswahl für die Leitlinein
   leitlinien = [
-    'NVL Nicht-spezifischer Kreuzschmerz (2017)', 
+    'NVL Nicht-spezifischer Kreuzschmerz (2017)',
     'NVL COPD (2021)',
     'NVL COPD (2022)',
-    'NVL COPD (2022)'
+    'NVL COPD (2022)',
   ];
   selectedLeitlinie = 0;
 
   // gibt an ob einfache oder fachsprache Verwendet werden soll
-  useComplexLanguage: Boolean = false; 
+  useComplexLanguage: Boolean = false;
 
   // Parameter zum Anzeigen der Antwort
   showResponse: Boolean = false;
@@ -73,10 +92,22 @@ export class HomeComponent {
     duration: 0,
     model: '',
     user_question: '',
-    references: []
-  };;
+    references: [],
+  };
+  currentReferences:Array<Reference> = [];
 
-  constructor(private geapService: GeapBackendService,public dialog: MatDialog) {}
+  // Diese beiden Zeilen dienen dazu, dass SortCriteria auch im HTML template genutzt werden kann
+  static SortCriteria = SortCriteria;
+  SortCriteria = HomeComponent.SortCriteria;
+
+  // Kriterium zum Sortieren
+  currentCritia: SortCriteria = SortCriteria.RELEVANZ;
+  currentSortUp: boolean = true;
+
+  constructor(
+    private geapService: GeapBackendService,
+    public dialog: MatDialog
+  ) {}
 
   // Auswahl einer Frage aus dem Menü
   selectExampleQuestion(question: string) {
@@ -87,42 +118,103 @@ export class HomeComponent {
     return this.geapService.getExampleQuestions();
   }
 
-  sendRequest(){
+  sendRequest() {
+    if (this.selectedQuestion.length < 4) {
+      alert('Die Frage ist zu kurz bitte geben Sie eine richtige Frage ein.');
+      return;
+    }
     const request: Request = {
       frage: this.selectedQuestion,
       ll: this.leitlinien[this.selectedLeitlinie],
       a_laenge: 1,
       n_empfehlung: 10,
       relevanz: 2,
-      detail: this.useComplexLanguage
+      detail: this.useComplexLanguage,
     };
 
     console.log(request);
 
-    this.geapService.getAnswer(request).subscribe(
-      (data:ApiResponse)=>{
-        this.currentResponse = data;
-        this.showResponse=true;
-        console.log(data);
-      }
-    );
-
+    this.geapService.getAnswer(request).subscribe((data: ApiResponse) => {
+      this.currentResponse = data;
+      this.currentReferences = this.currentResponse.references.slice();
+      this.showResponse = true;
+      console.log(data);
+    });
   }
 
   // Wenn eine Frage gestellt wurde und eine neue Frage gestellt werden soll
-  refresh(){
-    this.showResponse=false;
-    this.selectedQuestion = "";
+  refresh() {
+    this.showResponse = false;
+    this.selectedQuestion = '';
   }
 
   // Öffnet ein Popup mit den Dateils der Referenz
-  openDetailsModal(reference:Reference){
+  openDetailsModal(reference: Reference) {
+    const dialogRef = this.dialog.open(DetailsModalComponent, {
+      data: reference,
+      panelClass: 'modal-details',
+    });
 
-    const dialogRef = this.dialog.open(DetailsModalComponent, {data: reference, panelClass: 'modal-details'});
-    
-
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('Details Dialog wurde geschlossen');
     });
+  }
+
+  clickSortCriteria(criteria: SortCriteria) {
+    if (criteria == this.currentCritia) {
+      this.currentSortUp = !this.currentSortUp;
+    } else {
+      this.currentCritia = criteria;
+      this.currentSortUp = true;
+    }
+
+    this.sortReferences();
+  }
+  sortReferences() {
+
+    switch (this.currentCritia){
+
+      case SortCriteria.RELEVANZ: // Sortieren nach Relevanz
+
+        this.currentReferences.sort((a, b) => {
+          const relevanz_a =
+            RelevanzPriority[a.relevance as keyof typeof RelevanzPriority];
+          const relevanz_b =
+            RelevanzPriority[b.relevance as keyof typeof RelevanzPriority];
+  
+          if (this.currentSortUp) {
+            return relevanz_b - relevanz_a; // Nach Relevanz aufsteigend sortieren
+          } else {
+            return relevanz_a - relevanz_b; // Nach Relevanz absteigen sortieren
+          }
+        });
+        break;
+
+      case SortCriteria.EMPFEHLUNGSGRAD: // Sortieren nach Empfehlungsgrad
+
+        this.currentReferences.sort((a,b)=>{
+          const recommendation_a  = EmpfehlengradPriority[a.level as keyof typeof EmpfehlengradPriority];
+          const recommendation_b  = EmpfehlengradPriority[b.level as keyof typeof EmpfehlengradPriority];
+
+          if (this.currentSortUp) {
+            return recommendation_b - recommendation_a; // Nach Empfehlungsgrad aufsteigend sortieren
+          } else {
+            return recommendation_a - recommendation_b; // Nach Empfehlungsgrad absteigen sortieren
+          }
+        });
+        break;
+
+      case SortCriteria.NUMMERIERUNG:
+        this.currentReferences.sort((a,b)=>{
+
+          if(this.currentSortUp){
+            return a.reference_id.localeCompare(b.reference_id);
+          }else{
+            return b.reference_id.localeCompare(a.reference_id);
+          }
+
+        })
+        break;
+    }
   }
 }
