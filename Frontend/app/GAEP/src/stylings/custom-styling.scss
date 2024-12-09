@@ -1,4 +1,4 @@
-@import "custom-variables.scss";
+@import "custom-theme.scss";
 
 .region-topbar {
   background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
@@ -103,8 +103,8 @@
 
 @for $i from 1 through 12 {
   .col-#{$i} {
-    flex: 0 0 percentage($i / 12); // Festlegen der Basisgröße.
-    max-width: percentage($i / 12);
+    flex: 0 0 percentage(calc($i / 12)); // Festlegen der Basisgröße.
+    max-width: percentage(calc($i / 12));
   }
 }
 
@@ -123,8 +123,8 @@
   
   @for $i from 1 through 12 {
     .col-md-#{$i} {
-      flex: 0 0 percentage($i / 12);
-      max-width: percentage($i / 12);
+      flex: 0 0 percentage(calc($i / 12));
+      max-width: percentage(calc($i / 12));
     }
   }
 }
@@ -132,8 +132,8 @@
 @media (min-width: 992px) {
   @for $i from 1 through 12 {
     .col-lg-#{$i} {
-      flex: 0 0 percentage($i / 12);
-      max-width: percentage($i / 12);
+      flex: 0 0 percentage(calc($i / 12));
+      max-width: percentage(calc($i / 12));
     }
   }
 }
@@ -141,8 +141,8 @@
 @media (min-width: 1200px) {
   @for $i from 1 through 12 {
     .col-xl-#{$i} {
-      flex: 0 0 percentage($i / 12);
-      max-width: percentage($i / 12);
+      flex: 0 0 percentage(calc($i / 12));
+      max-width: percentage(calc($i / 12));
     }
   }
 }

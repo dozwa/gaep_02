@@ -1,4 +1,4 @@
-import { Tutorial, TutorialStep, View } from "./TutorialModel";
+import { Tutorial, View } from "./TutorialModel";
 
 export const GAEPTutorial:Tutorial = {
     steps: [

@@ -132,8 +132,6 @@ html {
     --mat-toolbar-container-background-color: #{mat.get-theme-color($theme, primary, 40)};
     color: white !important
   }
-  // Lade alle Material-Komponenten mit dem definierten Theme
-  @include mat.all-component-themes($theme);
   
 }
 
