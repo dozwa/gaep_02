@@ -1,18 +1,18 @@
 <div class="gray-background"></div>
 
-<div *ngIf="this.tutorialView[this.currentTutorial] == View.HOME">
+<div *ngIf="this.tutorial.steps[this.currentStep].view == View.HOME">
   <app-home></app-home>
 </div>
 
-<div *ngIf="this.tutorialView[this.currentTutorial] == View.ANSWER">
+<div *ngIf="this.tutorial.steps[this.currentStep].view == View.ANSWER">
   <app-home [showResponse]="true" [selectedQuestion]="this.getDummyData().user_question" [currentResponse]="this.getDummyData()" [currentReferences]="this.getDummyData().references"></app-home>
 </div>
 
-<div *ngIf="this.tutorialView[this.currentTutorial] == View.HISTORY">
+<div *ngIf="this.tutorial.steps[this.currentStep].view == View.HISTORY">
   <app-search-history></app-search-history>
 </div>
 
-<!--<div *ngIf="this.tutorialView[this.currentTutorial] == View.SOURCE">
+<!--<div *ngIf="this.tutorial.steps[this.currentStep].view == View.SOURCE">
   <app-source-modal [sources]="this.getDummyData().references[0].sources" []></app-source-modal>
 </div>-->
 
@@ -28,19 +28,19 @@
       <div
         class="col-lg-4 col-lm-4 col-md-5 col-sm-7 col-sx-8 tutorial-text-box"
       >
-        <span class="tutorial-text">{{ currentText }}</span>
+        <span class="tutorial-text">{{ this.tutorial.steps[this.currentStep].Text }}</span>
       </div>
 
       <div class="tutorial-text-box">
         <div style="display: inline-block; vertical-align: middle; line-height: normal;">
 
           <div class="button-container">
-            <button color="accent" mat-flat-button (click)="this.prevStep()" [disabled]="this.currentTutorial<=0">
+            <button color="accent" mat-flat-button (click)="this.prevStep()" [disabled]="this.currentStep<=0">
               Zurück
             </button>
 
             <button color="accent" mat-flat-button (click)="this.nextStep()">
-              {{ currentButtonText }}
+              Verstanden!
             </button>
 
             <button
