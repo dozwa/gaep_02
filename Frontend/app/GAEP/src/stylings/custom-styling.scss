@@ -264,3 +264,12 @@ button.button-selected {
   display: inline-flex;
   vertical-align: middle;
 }
+
+
+.highlight {
+  position: relative;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid red;
+  z-index: 11;
+}

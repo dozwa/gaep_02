@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-search-history',
+  standalone: true,
   templateUrl: './search-history.component.html',
   styleUrls: ['./search-history.component.scss']
 })

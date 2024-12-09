@@ -2,11 +2,18 @@
   <div class="col-lg-2 col-xl-3"></div>
   <div class="col-sx-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
     <div class="column-center">
-      <img
-        src="/img/Paula__6_.svg"
-        style="width: 250px"
-        class="img-responsive"
-      />
+      <a
+        href="/home"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="home-picture"
+      >
+        <img
+          src="/img/Paula__6_.svg"
+          style="width: 250px"
+          class="img-responsive"
+        />
+      </a>
       <div class="row">
         <div class="column bracket-border-left"></div>
 
@@ -16,6 +23,7 @@
             appearance="outline"
             appearance="fill"
             style="width: 100%; margin-top: 1rem; padding-right: 1rem"
+            id="searchBar"
           >
             <mat-label>Frage eingeben oder auswählen</mat-label>
             <!-- Suchfeld für benutzerdefinierte Fragen -->
@@ -26,8 +34,13 @@
               [(ngModel)]="selectedQuestion"
             />
             <!-- Dropdown-Icon für die Auswahl der Beispielfragen -->
-            <button mat-icon-button matSuffix [matMenuTriggerFor]="menu" class="question-icon">
-              <mat-icon >arrow_drop_down</mat-icon>
+            <button
+              mat-icon-button
+              matSuffix
+              [matMenuTriggerFor]="menu"
+              class="question-icon"
+            >
+              <mat-icon>arrow_drop_down</mat-icon>
             </button>
             <!-- Menü für Beispielfragen -->
             <mat-menu
@@ -35,7 +48,7 @@
               yPosition="below"
               xPosition="before"
               [overlapTrigger]="false"
-              class = "question-dropdown"
+              class="question-dropdown"
             >
               <button
                 mat-menu-item
@@ -48,7 +61,13 @@
             </mat-menu>
           </mat-form-field>
 
-          <div clas="row" style="margin: 1rem 0rem;">
+          <div class="language-select">
+            <mat-checkbox [(ngModel)]="useComplexLanguage"
+              >detaillierte Antwort</mat-checkbox
+            >
+          </div>
+
+          <div clas="row " id="select-guideline" style="margin-bottom: 2rem">
             <ng-container *ngFor="let button of leitlinien; let i = index">
               <button
                 color="primary"
@@ -63,17 +82,7 @@
             </ng-container>
           </div>
 
-
-          <div class="language-select" style="margin: 2rem 0rem;">
-            <mat-radio-group [(ngModel)]="useComplexLanguage">
-              <mat-radio-button [value]="true">einfache Sprache</mat-radio-button>
-              <mat-radio-button [value]="false">detaillierte Sprache</mat-radio-button>
-            </mat-radio-group>
-            
-          </div>
-
-
-          <div class="row" style="margin-top: 1rem;">
+          <div class="row" style="margin-top: 1rem">
             <button
               color="primary"
               mat-flat-button
@@ -104,7 +113,7 @@
         </div>
 
         <!-- Folgender Teil wird angezeigt wenn eine Frage gestellt wurde-->
-        <div class="column" *ngIf="this.showResponse">
+        <div class="column" id="asked-question" *ngIf="this.showResponse">
           <div class="question">
             {{ this.selectedQuestion }}
           </div>
@@ -141,49 +150,105 @@
       </div>
 
       <!-- Filter Leiste -->
-
-      <mat-card  *ngIf="this.showResponse" class="main-card">
-        <mat-card-content class="filter-card">
-          <div class="row">
-            <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element" [ngClass]="{'selected-filter': this.currentCritia==SortCriteria.RELEVANZ}">
-              <span (click)="this.clickSortCriteria(SortCriteria.RELEVANZ)">
-                Relevanz
-                <mat-icon
-                  class="inline-icon"
-                  [ngClass]="{'placeholder-icon':this.currentCritia!=SortCriteria.RELEVANZ}">
-                  {{ this.currentSortUp ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
-                </mat-icon>
+       <div *ngIf="this.showResponse" id="filter-card" class="row" style="margin-top: 0rem">
+        <mat-card class="main-card" >
+          <mat-card-content class="filter-card">
+            <div class="row">
+              <div
+                class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element"
+                [ngClass]="{
+                  'selected-filter': this.currentCritia == SortCriteria.RELEVANZ
+                }"
+              >
+                <span (click)="this.clickSortCriteria(SortCriteria.RELEVANZ)">
+                  Relevanz
+                  <mat-icon
+                    class="inline-icon"
+                    [ngClass]="{
+                      'placeholder-icon':
+                        this.currentCritia != SortCriteria.RELEVANZ
+                    }"
+                  >
+                    {{
+                      this.currentSortUp
+                        ? "keyboard_arrow_up"
+                        : "keyboard_arrow_down"
+                    }}
+                  </mat-icon>
                 </span>
-            </div>
-            <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element" [ngClass]="{'selected-filter': this.currentCritia==SortCriteria.NUMMERIERUNG}">
-              <span (click)="this.clickSortCriteria(SortCriteria.NUMMERIERUNG)">
-                Nummerierung
-                <mat-icon
-                  class="inline-icon"
-                  [ngClass]="{'placeholder-icon':this.currentCritia!=SortCriteria.NUMMERIERUNG}">
-                  {{ this.currentSortUp ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
-                </mat-icon>
+              </div>
+              <div
+                class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element"
+                [ngClass]="{
+                  'selected-filter':
+                    this.currentCritia == SortCriteria.NUMMERIERUNG
+                }"
+              >
+                <span (click)="this.clickSortCriteria(SortCriteria.NUMMERIERUNG)">
+                  Nummerierung
+                  <mat-icon
+                    class="inline-icon"
+                    [ngClass]="{
+                      'placeholder-icon':
+                        this.currentCritia != SortCriteria.NUMMERIERUNG
+                    }"
+                  >
+                    {{
+                      this.currentSortUp
+                        ? "keyboard_arrow_up"
+                        : "keyboard_arrow_down"
+                    }}
+                  </mat-icon>
                 </span>
-            </div>
-            <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element" [ngClass]="{'selected-filter': this.currentCritia==SortCriteria.EMPFEHLUNGSGRAD}">
-              <span (click)="this.clickSortCriteria(SortCriteria.EMPFEHLUNGSGRAD)">
-                Empfehlungsgrad
-                <mat-icon
-                  class="inline-icon"
-                  [ngClass]="{'placeholder-icon':this.currentCritia!=SortCriteria.EMPFEHLUNGSGRAD}">
-                  {{ this.currentSortUp ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
-                </mat-icon>
+              </div>
+              <div
+                class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10 filter-element"
+                [ngClass]="{
+                  'selected-filter':
+                    this.currentCritia == SortCriteria.EMPFEHLUNGSGRAD
+                }"
+              >
+                <span
+                  (click)="this.clickSortCriteria(SortCriteria.EMPFEHLUNGSGRAD)"
+                >
+                  Empfehlungsgrad
+                  <mat-icon
+                    class="inline-icon"
+                    [ngClass]="{
+                      'placeholder-icon':
+                        this.currentCritia != SortCriteria.EMPFEHLUNGSGRAD
+                    }"
+                  >
+                    {{
+                      this.currentSortUp
+                        ? "keyboard_arrow_up"
+                        : "keyboard_arrow_down"
+                    }}
+                  </mat-icon>
                 </span>
+              </div>
+              <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10">
+                <span>
+                  <input
+                    matInput
+                    class="inputFilter"
+                    placeholder="Suchen"
+                    [(ngModel)]="searchbarInput"
+                    (keyup.enter)="searchRefernces()"
+                  />
+                  <mat-icon
+                    class="inline-icon"
+                    style="cursor: pointer"
+                    (click)="resetFilterSearch()"
+                    >refresh</mat-icon
+                  >
+                </span>
+              </div>
             </div>
-            <div class="col-lm-3 col-lg-3 col-md-3 col-sm-10 col-sx-10" >
-              <span>
-                <input matInput class="inputFilter" placeholder="Suchen" [(ngModel)]="searchbarInput" (keyup.enter)="searchRefernces()">
-                <mat-icon class="inline-icon" style="cursor: pointer;" (click)="resetFilterSearch()">refresh</mat-icon>
-              </span>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+        </mat-card>
+       </div>
+      
 
       <!--Antwort Part-->
       <div *ngIf="this.showResponse" class="row" style="margin-top: 0rem">
@@ -193,6 +258,7 @@
             [refernce]="reference"
             (click)="this.openDetailsModal(reference)"
             style="cursor: pointer"
+            class="details-tab"
           ></app-details-tab>
         </div>
       </div>
