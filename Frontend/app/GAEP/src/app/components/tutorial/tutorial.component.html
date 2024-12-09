@@ -40,7 +40,7 @@
             </button>
 
             <button color="accent" mat-flat-button (click)="this.nextStep()">
-              Verstanden!
+              {{currentStep >= tutorial.steps.length -1 ?"Beenden":"Verstanden!"}}
             </button>
 
             <button
