@@ -1,11 +1,11 @@
 <mat-card class="main-card">
   <mat-card-header class="card-header">
     <span class="header-title" matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipRelevanz()">{{this.relevanz}}</span> {{this.refernce.reference_id}}<br/>
-    <span class="header-text">{{this.refernce.reference_text}}</span>
+    <span class="header-text details-header-text">{{this.refernce.reference_text}}</span>
     <span matTooltipClass="tooltip-style" [matTooltip]="this.getTooltipEmpfehlungsgrad()">{{ this.empfehlungsgrad }}</span>
   </mat-card-header>
 
-  <mat-card-content class="card-content">
+  <mat-card-content class="card-content details-summary">
     <div class="summary row">
       <img
         class="col-sx-0 col-sm-0 col-md-6 col-lg-2 col-xl-2"
@@ -23,7 +23,7 @@
   <mat-card-footer class="card-footer row">
     <div>
       <p class="reference">
-        Empfehlungsbasis: Literatur [215; 253-255] > <span (click)="this.showSources()" class="source-link">Quellen anzeigen</span>
+        Empfehlungsbasis: > <span (click)="this.showSources($event)" class="source-link">Quellen anzeigen</span>
       </p>
     </div>
     <div>

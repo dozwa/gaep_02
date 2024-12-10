@@ -1,3 +1,4 @@
+<div id="menu-bar">
   <mat-toolbar color="primary">
     <div fxShow="true" fxHide.gt-sm="true">
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -13,56 +14,58 @@
         <mat-icon>home</mat-icon>
         <span class="icon-text">Home</span>
       </a>
-  
+
       <a mat-button href="/searchHistory">
         <mat-icon>manage_search</mat-icon>
         <span class="icon-text">Suchverlauf</span>
       </a>
-  
+
       <a mat-button href="/tutorial">
         <mat-icon>swipe_up</mat-icon>
         <span class="icon-text">Tutorial</span>
       </a>
-  
+
       <a mat-button href="https://www.htw-berlin.de/impressum/">
-        <span >Impressum</span>
+        <span>Impressum</span>
       </a>
-  
+
       <a mat-button href="https://www.htw-berlin.de/datenschutz/">
-        <span >Datenschutz</span>
+        <span>Datenschutz</span>
       </a>
     </div>
   </mat-toolbar>
 
-    <mat-sidenav
-      color="primary"
-      #sidenav
-      fxLayout="column"
-      mode="over"
-      opened="false"
-      fxHide.gt-sm="true"
-    >
-      <div fxLayout="column"><a mat-button href="/home">
+  <mat-sidenav
+    color="primary"
+    #sidenav
+    fxLayout="column"
+    mode="over"
+    opened="false"
+    fxHide.gt-sm="true"
+  >
+    <div fxLayout="column">
+      <a mat-button href="/home">
         <mat-icon>home</mat-icon>
         <span class="icon-text">Home</span>
       </a>
-  
+
       <a mat-button href="/searchHistory">
         <mat-icon>manage_search</mat-icon>
         <span class="icon-text">Suchverlauf</span>
       </a>
-  
+
       <a mat-button href="/tutorial">
         <mat-icon>swipe_up</mat-icon>
         <span class="icon-text">Tutorial</span>
       </a>
-  
+
       <a mat-button href="https://www.htw-berlin.de/impressum/">
-        <span >Impressum</span>
+        <span>Impressum</span>
       </a>
-  
+
       <a mat-button href="https://www.htw-berlin.de/datenschutz/">
-        <span >Datenschutz</span>
+        <span>Datenschutz</span>
       </a>
-      </div>
-    </mat-sidenav>
+    </div>
+  </mat-sidenav>
+</div>

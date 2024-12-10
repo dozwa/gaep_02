@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,6 +15,7 @@ import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { GeapBackendService } from '../../services/geap-backend.service';
 import { ApiResponse, Reference } from '../../models/Response';
@@ -22,6 +23,7 @@ import { Request } from '../../models/Request';
 
 import { DetailsTabComponent } from './details-tab/details-tab.component';
 import { DetailsModalComponent } from '../../modals/details-modal/details-modal.component';
+
 
 export enum SortCriteria {
   RELEVANZ,
@@ -60,14 +62,15 @@ enum EmpfehlengradPriority {
     MatButton,
     DetailsTabComponent,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   // Steuerung der Eingabe
-  selectedQuestion = '';
+  @Input() selectedQuestion = '';
 
   // Auswahl für die Leitlinein
   leitlinien = [
@@ -80,8 +83,8 @@ export class HomeComponent {
   useComplexLanguage: Boolean = false;
 
   // Parameter zum Anzeigen der Antwort
-  showResponse: Boolean = false;
-  currentResponse: ApiResponse = {
+  @Input() showResponse: Boolean = false;
+  @Input() currentResponse: ApiResponse = {
     optimized_question: '',
     generated_answer: '',
     guideline: '',
@@ -94,7 +97,7 @@ export class HomeComponent {
     user_question: '',
     references: [],
   };
-  currentReferences: Array<Reference> = [];
+  @Input()  currentReferences: Array<Reference> = [];
 
   // Diese beiden Zeilen dienen dazu, dass SortCriteria auch im HTML template genutzt werden kann
   static SortCriteria = SortCriteria;

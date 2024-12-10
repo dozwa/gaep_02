@@ -1,6 +1,8 @@
 ## Docker
 zwei dockerfiles: "dockerfile" für die entwicklung und "dockerfile_prod" für das deployment bzw. für die produktivumgebung
 
+Die mit Angular umgesetzte Webanwendung wird in einem Docker Container ausgeführt. Hierzu stehen zwei verschiedene Docker Container zur Verfügung. Ein Container beinhaltet die Entwicklungsumgebung, welcher sich zum Entwickeln der Anwendung eignet, und der andere für die Produktivumgebung, welcher für den Einsatz gedacht ist.
+
 ### Docker build
 Alle Docker Container:
 > $ docker compose build

@@ -56,7 +56,8 @@ export class DetailsTabComponent implements OnInit{
       this.relevanz = Relevanz[this.refernce.relevance as keyof typeof Relevanz];
   }
 
-  showSources(){
+  showSources(event: Event){
+    event.stopPropagation();
     
     const dialogRef = this.dialog.open(SourceModalComponent, {data: this.refernce.sources, panelClass: 'modal-details'});
     

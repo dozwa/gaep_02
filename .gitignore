@@ -22,6 +22,7 @@ Thumbs.db
 
 # Draw.io: Bufferdateien oder Backups von Diagrammen mit bestimmten Endungen werden ignoriert.
 *.$*.drawio.bkp
+*.$*.drawio.dtmp
 
 # JetBrains IDEs/IntelliJ: Projektdateien sollten nicht in ein gemeinsames Repository eingecheckt werden.
 .idea/

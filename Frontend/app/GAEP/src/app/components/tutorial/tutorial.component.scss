@@ -1,0 +1,58 @@
+@import "../../../stylings/custom-styling.scss";
+
+.description {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba($brand-success, 70%);
+  height: 20vh;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20vh;
+  z-index: 12;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 10px; 
+    width: 100%; 
+  }
+
+.tutorial-text-box {
+  padding-right: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tutorial-text {
+  display: inline-block;
+  line-height: normal;
+  text-align: left;
+  background-color: $brand-success;
+  margin: 20px; /* Abstand für Demonstrationszwecke */
+  box-shadow: 0 0 30px 10px rgba($brand-success, 1); /* Weicher Schatten mit verlaufendem Effekt */
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: large;
+  font-weight: bold;
+}
+
+.description-content {
+  height: 20vh;
+  vertical-align: middle;
+  white-space: pre-line;
+}
+.gray-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 50%;
+    z-index: 10;
+    background-color: gray;
+    //background-color: (circle at center, transparent 30%, rgba(128, 128, 128, 0.5) 70%)
+}
