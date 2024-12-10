@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { GeapBackendService } from '../../services/geap-backend.service';
+import { SearchHistoryEntry } from '../../models/Response';
 
 @Component({
   selector: 'app-search-history',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './search-history.component.html',
   styleUrls: ['./search-history.component.scss']
 })
-export class SearchHistoryComponent {
-  exampleQuestions = [
-    { question: 'Sind NSARs bei chronischem Kreuzschmerz empfehlenswert?', type: 'einfach' },
-    { question: 'Welche Übungen werden für Kreuzschmerzen empfohlen?', type: 'detailliert' },
-    { question: 'Wie können psychosoziale Risikofaktoren bei Kreuzschmerzen erkannt werden?', type: 'detailliert' },
-    { question: 'Ist eine Bildgebung zur Diagnose von Kreuzschmerzen sinnvoll?', type: 'einfach' },
-    { question: 'Welches Training wird bei COPD empfohlen?', type: 'detailliert' },
-    { question: 'Wird Atemtherapie in der Behandlung von COPD empfohlen?', type: 'einfach' },
-    { question: 'Wie kann ich bei COPD eine Tabakentwöhnung durchführen?', type: 'detailliert' }
-  ];
+export class SearchHistoryComponent implements OnInit {
+  searchHistory: SearchHistoryEntry[] = [];
 
-  onQuestionClick(question: { question: string, type: string }) {
-    // Logik bei Klick auf eine Frage
-    console.log(`Ausgewählte Frage: ${question.question}, Antworttyp: ${question.type}`);
-    // Hier können Sie zusätzliche Logik implementieren
+  @Output() questionSelected = new EventEmitter<{ question: string, detail: boolean }>();
+
+  constructor(private geapService: GeapBackendService) {}
+
+  ngOnInit(): void {
+    this.geapService.getSearchHistory().subscribe((data) => {
+      console.log('Search History:', data);
+      if (data && Array.isArray(data)) {
+        this.searchHistory = data;
+      } else {
+        console.error('Wrong structure:', data);
+      }
+    }, (error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  onQuestionClick(question: string, detail: boolean): void {
+    this.questionSelected.emit({ question, detail });
   }
 }

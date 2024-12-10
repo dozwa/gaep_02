@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Datenmodelle
-import { ApiResponse, Reference, ReferenceDetail } from '../models/Response';
-import { Request } from '../models/Request';
+import { ApiResponse, Reference, ReferenceDetail, SearchHistoryEntry } from '../models/Response';
+import { Request } from '../models/Request'; 
 
 @Injectable({
   providedIn: 'root',
 })
 export class GeapBackendService {
   private dummyDataResponse = 'dummyData/JSON_sturcture_im.txt'; // Pfad zu deiner JSON-Datei
+  private dummySearchHistoryResponse = 'dummyData/search_history_example.json'; // Pfad zur dummySearchHistory
 
   // Array mit Beispiel-Fragen
   exampleQuestions: string[] = [
@@ -37,4 +38,10 @@ export class GeapBackendService {
   getExampleQuestions(): string[] {
     return this.exampleQuestions;
   }
+
+  // SearchHistory Abfrage
+  getSearchHistory(): Observable<SearchHistoryEntry[]> {
+    return this.http.get<SearchHistoryEntry[]>(this.dummySearchHistoryResponse);
+  }
+
 }
