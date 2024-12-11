@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { GeapBackendService } from '../../services/geap-backend.service';
 import { SearchHistoryEntry } from '../../models/Response';
 
@@ -8,29 +9,36 @@ import { SearchHistoryEntry } from '../../models/Response';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './search-history.component.html',
-  styleUrls: ['./search-history.component.scss']
+  styleUrls: ['./search-history.component.scss'],
 })
 export class SearchHistoryComponent implements OnInit {
   searchHistory: SearchHistoryEntry[] = [];
 
-  @Output() questionSelected = new EventEmitter<{ question: string, detail: boolean }>();
-
-  constructor(private geapService: GeapBackendService) {}
+  constructor(
+    private geapService: GeapBackendService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.geapService.getSearchHistory().subscribe((data) => {
-      console.log('Search History:', data);
-      if (data && Array.isArray(data)) {
-        this.searchHistory = data;
-      } else {
-        console.error('Wrong structure:', data);
+    this.geapService.getSearchHistory().subscribe(
+      (data) => {
+        console.log('Search History:', data);
+        if (data && Array.isArray(data)) {
+          this.searchHistory = data;
+        } else {
+          console.error('Wrong structure:', data);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
       }
-    }, (error) => {
-      console.error('Error:', error);
-    });
+    );
   }
 
   onQuestionClick(question: string, detail: boolean): void {
-    this.questionSelected.emit({ question, detail });
+    // Navigate to home-component with query parameters
+    this.router.navigate(['/home'], {
+      queryParams: { question: question, detail: detail },
+    });
   }
 }

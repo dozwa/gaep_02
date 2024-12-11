@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,8 +15,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { GeapBackendService } from '../../services/geap-backend.service';
 import { ApiResponse, Reference } from '../../models/Response';
@@ -23,7 +24,6 @@ import { Request } from '../../models/Request';
 
 import { DetailsTabComponent } from './details-tab/details-tab.component';
 import { DetailsModalComponent } from '../../modals/details-modal/details-modal.component';
-
 
 export enum SortCriteria {
   RELEVANZ,
@@ -63,12 +63,12 @@ enum EmpfehlengradPriority {
     DetailsTabComponent,
     MatCardModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   // Steuerung der Eingabe
   @Input() selectedQuestion = '';
 
@@ -97,7 +97,7 @@ export class HomeComponent {
     user_question: '',
     references: [],
   };
-  @Input()  currentReferences: Array<Reference> = [];
+  @Input() currentReferences: Array<Reference> = [];
 
   // Diese beiden Zeilen dienen dazu, dass SortCriteria auch im HTML template genutzt werden kann
   static SortCriteria = SortCriteria;
@@ -108,12 +108,23 @@ export class HomeComponent {
   currentSortUp: boolean = true;
 
   // Eingabe in der Suchleiste (Filter)
-  searchbarInput = "";
+  searchbarInput = '';
 
   constructor(
     private geapService: GeapBackendService,
+    private route: ActivatedRoute,
     public dialog: MatDialog
   ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      if (params['question'] && params['detail'] !== undefined) {
+        this.selectedQuestion = params['question'];
+        this.useComplexLanguage = params['detail'] === 'true';
+        this.sendRequest();
+      }
+    });
+  }
 
   // Auswahl einer Frage aus dem Menü
   selectExampleQuestion(question: string) {
@@ -218,15 +229,14 @@ export class HomeComponent {
           var [aFirst, aSecond] = a.reference_id.split('-').map(Number);
           var [bFirst, bSecond] = b.reference_id.split('-').map(Number);
 
-          if(this.currentSortUp){
+          if (this.currentSortUp) {
             [aFirst, bFirst] = [bFirst, aFirst];
             [aSecond, bSecond] = [bSecond, aSecond];
           }
 
           if (aFirst !== bFirst) {
-            
             return aFirst - bFirst;
-          }else{
+          } else {
             return aSecond - bSecond;
           }
         });
@@ -254,8 +264,8 @@ export class HomeComponent {
     this.sortReferences();
   }
 
-  resetFilterSearch(){
-    this.searchbarInput = "";
+  resetFilterSearch() {
+    this.searchbarInput = '';
     this.searchRefernces();
   }
 }

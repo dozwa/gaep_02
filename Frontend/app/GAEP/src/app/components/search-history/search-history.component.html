@@ -5,9 +5,9 @@
       <h1>Suchverlauf</h1>
       <div class="row">
         <ng-container *ngFor="let entry of searchHistory">
-          <div class="search-entry" (click)="onQuestionClick(entry.user_question, entry.detail)">
+          <div class="search-entry" (click)="onQuestionClick(entry.user_question, !!entry.detail)">
             <div class="question">{{ entry.user_question }}</div>
-            <div class="answer-type">
+            <div class="detail">
               {{ entry.detail ? 'detaillierte Antwort' : 'kurze Antwort' }}
             </div>
           </div>

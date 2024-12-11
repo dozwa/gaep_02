@@ -1,0 +1,30 @@
+[
+  {
+    "user_question": "Sind NSARs bei chronischem Kreuzschmerz empfehlenswert?",
+    "detail": false
+  },
+  {
+    "user_question": "Welche Übungen werden für Kreuzschmerzen empfohlen?",
+    "detail": true
+  },
+  {
+    "user_question": "Wie können psychosoziale Risikofaktoren bei Kreuzschmerzen erkannt werden?",
+    "detail": true
+  },
+  {
+    "user_question": "Ist eine Bildgebung zur Diagnose von Kreuzschmerzen sinnvoll?",
+    "detail": false
+  },
+  {
+    "user_question": "Welches Training wird bei COPD empfohlen?",
+    "detail": true
+  },
+  {
+    "user_question": "Wird Atemtherapie in der Behandlung von COPD empfohlen?",
+    "detail": false
+  },
+  {
+    "user_question": "Wie kann ich bei COPD eine Tabakentwöhnung durchführen?",
+    "detail": false
+  }
+]
