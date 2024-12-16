@@ -1,14 +1,18 @@
-# Beschreibung
-In diesem Ordner befinden sich die Datenmodelle, welche in dieser Anwendung genutzt werden. Die Datenmodelle dienen hauptsächlich zur einheitlichen Kommunikation untereinander. Sie werden unteranderem genutzt, um die vom Backend erhaltenen Daten einheitlich zu Formatieren.
+# Description
+[switch to german verison](/Frontend/app/GAEP/src/app/models/README_deutsch.md)
+
+[back to main README](/README.md)
+
+This folder contains the data models used in this application. The data models primarily serve to facilitate consistent communication among components. They are also used to uniformly format the data received from the backend.
 
 ## Request
-Datenmodell für die Anfrage an den Backend Server.
+Data model for the request to the backend server.
 
 ## ApiResponse
-Dies ist das Hauptdatenmodell für die Antwort aus vom Backend.
+This is the main data model for the response from the backend.
 
 ## Reference
-Das Datenmodell für jede Referenz in der references-Liste, welche zusätzliche Informationen wie generated_summary, relevance, und eine Liste von details enthält.
+The data model for each reference in the references list, which contains additional information such as generated_summary, relevance, and a list of details.
 
 ## ReferenceDetail
-Modell für detaillierte Informationen innerhalb einer Referenz.
+Model for detailed information within a reference.

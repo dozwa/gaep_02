@@ -93,13 +93,16 @@ export class GeapBackendService {
 
   constructor(private http: HttpClient) {}
 
+  // Sendet eine Benutzeranfrage zum Backend Server und wandelt die Anfrage in eine ApiResponse um, welche alle Daten beinhaltet.
   getAnswer(userRequest: Request): Observable<ApiResponse> {
     return this.getAnswerDummyData();
   }
 
+  // lädt Dummy Daten einer Benutzerabfrage aus einer JSON Datei, welche auf dem Webserver liegt
   getAnswerDummyData(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.dummyDataResponse);
   }
+  // Gibt die in diesem Service definierten Dummydaten zurück
   getDummyData():ApiResponse{
     return this.dummyApiResponse;
   }
@@ -109,8 +112,12 @@ export class GeapBackendService {
     return this.exampleQuestions;
   }
 
-  // SearchHistory Abfrage
+  // Fragt die Liste der letzten Sucheinträge ab.
   getSearchHistory(): Observable<SearchHistoryEntry[]> {
+    return this.getSearchHistoryDummy()
+  }
+  // lädt Dummy Daten eines Suchverlaufs aus einer JSON Datei, welche auf dem Webserver liegt
+  getSearchHistoryDummy(): Observable<SearchHistoryEntry[]> {
     return this.http.get<SearchHistoryEntry[]>(this.dummySearchHistoryResponse);
   }
 
