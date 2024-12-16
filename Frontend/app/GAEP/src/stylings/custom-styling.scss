@@ -1,38 +1,6 @@
 @import "custom-theme.scss";
 
-.region-topbar {
-  background-color: $topbar-bg; /* Hintergrundfarbe des Menüs */
-  overflow: hidden; /* Wird verwendet, um überfließende Inhalt zu verbergen */
-  position: fixed; /* Fixiert das Menü oben auf der Seite */
-  top: 0; /* Positioniert das Menü am oberen Rand */
-  left: 0;
-  width: 100%; /* Lässt das Menü die ganze Breite einnehmen */
-  z-index: 999; /* Stellt sicher, dass das Menü über anderen Inhalten liegt */
-  min-height: $topbar-minimalheight;
-}
 
-.region-topbar ul {
-  margin: 0; /* Entfernt Standardmargen */
-  padding: 0; /* Entfernt Standardabstände */
-  list-style-type: none; /* Entfernt Aufzählungszeichen */
-}
-
-.region-topbar li {
-  display: inline; /* Li-Elemente in einer Linie darstellen */
-}
-
-.region-topbar li a {
-  display: inline-block; /* Ermöglicht das Anwenden von Rändern und Padding */
-  color: white; /* Textfarbe */
-  text-align: center; /* Zentriert den Text */
-  padding: 14px 16px; /* Innerer Abstand zu den Rändern des Links */
-  text-decoration: none; /* Entfernt die Unterstreichung 
-                             des Links */
-}
-
-.region-topbar li a:hover {
-  background-color: $navtopbar-bg-hover; /* Hintergrundfarbe beim Hoover-Effekt */
-}
 
 
 @media (max-width: 600px) {
@@ -152,8 +120,6 @@
 
 .flex-spacer {
   flex: 1 1 auto; /* Erzeugt flexiblen Platz */
-  //width: 10%;
-  //min-width: 20px;
 }
 .mat-sidenav-content{
   font-size: 200%;
@@ -216,7 +182,7 @@ button.button-selected {
   border: 1px solid #e0e0e0;
   border-radius: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: lighten($bg-color-secondary, 5%);
+  background-color: lighten($bg-color-secondary, 5%) !important;
 }
 // Kopfzeilen-Stil 
 .card-header {

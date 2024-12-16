@@ -4,10 +4,8 @@ The "GAEP" application (Guideline Adherent Evidence Based Physiotherapy) is an i
 [Find a detailed documentation of the software here.](Documentation.md)
 
 **ToDos:**
-- Revise ReadMe (Main, Frontend, Backend)
 - Set up and test Backend
 - responsive Layout
-- fix layout (blue container)
 
 ## Table of Content
 - [System Overview](#system-overview)

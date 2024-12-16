@@ -132,7 +132,6 @@ html {
     --mat-toolbar-container-background-color: #{mat.get-theme-color($theme, primary, 40)};
     color: white !important
   }
-  
 }
 
 
@@ -141,17 +140,4 @@ html {
 }
 .mat-toolbar a{
   color: white !important;
-}
-
-.disclaimer {
-  z-index: 1000;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: white;
-  padding: 30vh 20vw;
-  text-align: center;
-  color: black !important;
 }
